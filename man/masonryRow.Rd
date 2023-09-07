@@ -4,10 +4,14 @@
 \alias{masonryRow}
 \title{Row}
 \usage{
-masonryRow(...)
+masonryRow(..., min_height = "5rem")
 }
 \arguments{
-\item{...}{Up to 12 \code{\link[=mItem]{mItem()}}.}
+\item{...}{Any number of \code{\link[=masonryItem]{masonryItem()}}.}
+
+\item{min_height}{Minimum height of row, a valid CSS value.
+This is used because if not set the row goes to 0 height if empty
+and users can then no longer drag \code{\link[=masonryItem]{masonryItem()}} to it.}
 }
 \description{
 Masonry row

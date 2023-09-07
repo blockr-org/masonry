@@ -8,6 +8,8 @@ masonryItem(..., width = NULL)
 }
 \arguments{
 \item{...}{Content of the item.}
+
+\item{width}{Width, a percentage (\code{numeric}, e.g.: \code{.5}).}
 }
 \description{
 Masonry item

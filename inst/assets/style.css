@@ -1,9 +1,6 @@
-.masonry-item {
- resize: horizontal;
- overflow-x:overlay; 
-}
-
-.masonry-item::-webkit-resizer {
-    background-color: transparent;
+.masonry-item:hover,
+.masonry-item:active {
+  resize: horizontal;
+  overflow: hidden;
 }
 

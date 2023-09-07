@@ -4,10 +4,14 @@
 \alias{masonry}
 \title{Row}
 \usage{
-masonry(...)
+masonry(..., options = list(), id = NULL)
 }
 \arguments{
-\item{...}{Up to 12 \code{\link[=mItem]{mItem()}}.}
+\item{...}{Any number of \code{\link[=masonryRow]{masonryRow()}}.}
+
+\item{options}{\code{\link[=list]{list()}} of options.}
+
+\item{id}{CSS ID of masonry element.}
 }
 \description{
 Masonry row

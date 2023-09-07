@@ -6,3 +6,5 @@
 ^webpack\.prod\.js$
 ^webpack\.common\.js$
 ^test\.R$
+^LICENSE\.md$
+^makefile$

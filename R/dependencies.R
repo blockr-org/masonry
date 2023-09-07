@@ -13,6 +13,7 @@ masonryDependencies <- function() {
       version = utils::packageVersion("masonry"),
       src = "assets",
       script = "index.js",
+      stylesheet = "style.css",
       package = "masonry"
     )
   )
