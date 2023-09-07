@@ -4,12 +4,14 @@
 \alias{masonryItem}
 \title{Item}
 \usage{
-masonryItem(..., width = NULL)
+masonryItem(..., width = 0.2, classes = "")
 }
 \arguments{
 \item{...}{Content of the item.}
 
-\item{width}{Width, a percentage (\code{numeric}, e.g.: \code{.5}).}
+\item{width}{Initial width, a percentage (\code{numeric}, e.g.: \code{.5}).}
+
+\item{classes}{Any additional classes.}
 }
 \description{
 Masonry item

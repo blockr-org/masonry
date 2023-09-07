@@ -4,3 +4,7 @@
   overflow: hidden;
 }
 
+.masonry-item > div {
+  height: 100%;
+}
+

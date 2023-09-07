@@ -4,7 +4,7 @@
 \alias{masonry}
 \title{Row}
 \usage{
-masonry(..., options = list(), id = NULL)
+masonry(..., options = list(), id = NULL, classes = "")
 }
 \arguments{
 \item{...}{Any number of \code{\link[=masonryRow]{masonryRow()}}.}
@@ -12,6 +12,8 @@ masonry(..., options = list(), id = NULL)
 \item{options}{\code{\link[=list]{list()}} of options.}
 
 \item{id}{CSS ID of masonry element.}
+
+\item{classes}{Any additional classes.}
 }
 \description{
 Masonry row
