@@ -17,6 +17,27 @@ export const addRow = (opts) => {
     $target.prepend(row);
   }
 
+  const gridOpts = getGrid(opts.target);
+  $(`${opts.target}`).masonry(gridOpts);
+};
+
+export const addItem = (opts) => {
+  let row = `<div class='masonry-item ${opts.classes}'>${opts.item}</div>`;
+
+  console.log(opts);
+  console.log(`.masonry-row:eq(${opts.row_index})`);
+  let $target = $(`${opts.target}`)
+    .find(".masonry-main-content")
+    .find(`.masonry-row:eq(${opts.row_index})`);
+
+  if (opts.position == "end") {
+    $target.append(row);
+  }
+
+  if (opts.position == "start") {
+    $target.prepend(row);
+  }
+
   let gridOpts = getGrid(opts.target);
-  $(`${opts.target}`).masonry();
+  $(`${opts.target}`).masonry(gridOpts);
 };

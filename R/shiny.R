@@ -36,3 +36,35 @@ masonry_add_row <- function(
 }
 
 
+masonry_add_item <- function(
+  target, 
+  row_index,
+  item,
+  position = c("start", "end"), 
+  classes = "",
+  session = shiny::getDefaultReactiveDomain()
+){
+  if(missing(target))
+    stop("Missing `target`")
+
+  if(missing(row_index))
+    stop("Missing `row_index`")
+
+  if(missing(item))
+    stop("Missing `item`")
+
+  position <- match.arg(position)
+
+  session$sendCustomMessage(
+    "masonry-add-item",
+    list(
+      target = target,
+      classes = classes,
+      position = position,
+      row_index = row_index - 1L,
+      item = as.character(item)
+    )
+  )
+}
+
+

@@ -1,6 +1,6 @@
 import "shiny";
 import { masonry } from "./masonry.js";
-import { addRow } from "./shiny.js";
+import { addItem, addRow } from "./shiny.js";
 
 jQuery.fn.extend({
   masonry: function (opts) {
@@ -13,3 +13,4 @@ Shiny.addCustomMessageHandler("masonry-init", (msg) => {
 });
 
 Shiny.addCustomMessageHandler("masonry-add-row", addRow);
+Shiny.addCustomMessageHandler("masonry-add-item", addItem);
