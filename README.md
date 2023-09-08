@@ -32,7 +32,7 @@ card <- \(...){
 
 ui <- fluidPage(
   theme = bslib::bs_theme(version = 5L),
-  masonry(
+  masonryGrid(
     masonryRow(
       classes = "bg-info",
       masonryItem(card(h1("hello"), plotOutput("base", width = "100%"))),
@@ -43,7 +43,7 @@ ui <- fluidPage(
       masonryItem(card(h1("here"))),
       masonryItem(card(h2("there"), p("A paragraph")))
     ),
-    options = list(margin = ".5rem", normalise = TRUE)
+    options = list(margin = ".5rem")
   ),
 )
 

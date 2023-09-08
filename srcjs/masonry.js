@@ -1,6 +1,8 @@
 import { identifier } from "./id.js";
+import { setGrid } from "./storage.js";
 
 export const masonry = (el, opts) => {
+  opts = opts || {};
   masonMains(el, opts);
 };
 
@@ -11,23 +13,25 @@ const listen = (el, opts) => {
 };
 
 const masonMains = (el, opts) => {
+  if ($(el).hasClass("masonry-main")) {
+    masonMain(el[0], opts);
+    return;
+  }
+
   $(el).find(".masonry-main").each((i, m) => {
     masonMain(m, opts);
   });
 };
 
 const masonMain = (el, opts) => {
-  if (!opts || Object.keys(opts).length === 0) {
-    opts = JSON.parse($(el).find("script").text());
-  }
-
-  if (!opts.group) {
-    opts.group = identifier(20);
-  }
+  const id = $(el).attr("id");
+  opts.group = id;
+  setGrid(id, opts);
 
   masonRows(el, opts);
-  sortable(el, opts);
   listen(el, opts);
+  $(el).addClass("masoned");
+  sortable(el, opts);
 };
 
 const masonRows = (el, opts) => {
@@ -45,7 +49,7 @@ const masonRow = (el, opts) => {
     $(el).css("height", h);
   }
 
-  $(el).attr("id", opts.group);
+  $(el).attr("id", identifier(20));
 
   normalise(el, opts);
   masonItems(el, opts);
@@ -78,7 +82,6 @@ const masonItem = (el, opts) => {
 const sortable = (el, opts) => {
   let sortOpts = {
     multiDrag: false,
-    selectedClass: "masonry-selected",
     fallbackTolerance: 2,
     animation: 150,
     swap: false,
@@ -96,6 +99,10 @@ const normalise = (el, opts) => {
   $(el).find(".masonry-item").each((i, item) => {
     widths.push($(item).data("masonry-width") || .2);
   });
+
+  if (widths.length == 0) {
+    return;
+  }
 
   let total = widths.reduce((c, p) => c + p);
 

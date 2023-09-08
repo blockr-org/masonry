@@ -1,5 +1,4 @@
-.masonry-item:hover,
-.masonry-item:active {
+.masonry-item {
   resize: horizontal;
   overflow: hidden;
 }

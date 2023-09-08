@@ -11,23 +11,26 @@
 #' @importFrom jsonlite toJSON
 #' 
 #' @export
-masonry <- \(..., options = list(), id = NULL, classes = ""){
-  script <- options |>
+masonryGrid <- \(..., options = list(), id = NULL, classes = ""){
+  if(is.null(id))
+    id <- identifier()
+
+  options <- options |>
     as.list() |>
     toJSON(auto_unbox = TRUE) |>
     as.character()
 
+  script <- sprintf("$('#%s').masonry(%s);", id, options)
+
   div(
+    id = id,
     class = sprintf("masonry-main %s", classes),
     div(
       class = "masonry-main-content",
       masonryDependencies(),
       ...
     ),
-    tags$script(
-      type = "application/json",
-      HTML(script)
-    )
+    tags$script(HTML(script))
   )
 }
 
