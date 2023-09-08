@@ -35,7 +35,19 @@ masonry_add_row <- function(
   )
 }
 
-
+#' Add an item
+#' 
+#' Add an item to [masonryRow()].
+#' 
+#' @param target `id` of target [masonryGrid()].
+#' @param row_index Index of row, an integer.
+#' @param item htmltools `tags`, the content of the item.
+#' @param session A valid shiny session.
+#' @param classes Additional classes to add to the row.
+#' @param position Whether to add the new row at the `start`
+#'  or the `end`.
+#' 
+#' @export
 masonry_add_item <- function(
   target, 
   row_index,
@@ -67,4 +79,22 @@ masonry_add_item <- function(
   )
 }
 
-
+#' Get config
+#' 
+#' Get config [masonryGrid()].
+#' 
+#' @param target `id` of target [masonryGrid()].
+#' @param session A valid shiny session.
+#' 
+#' @export
+masonry_get_config <- function(
+  id,
+  session = shiny::getDefaultReactiveDomain()
+) {
+  session$sendCustomMessage(
+    "masonry-get-config",
+    list(
+      target = id
+    )
+  )
+}

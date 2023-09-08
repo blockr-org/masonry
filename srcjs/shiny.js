@@ -24,8 +24,6 @@ export const addRow = (opts) => {
 export const addItem = (opts) => {
   let row = `<div class='masonry-item ${opts.classes}'>${opts.item}</div>`;
 
-  console.log(opts);
-  console.log(`.masonry-row:eq(${opts.row_index})`);
   let $target = $(`${opts.target}`)
     .find(".masonry-main-content")
     .find(`.masonry-row:eq(${opts.row_index})`);
