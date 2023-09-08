@@ -24,7 +24,7 @@ card <- \(...){
   div(
     class = "card",
     div(
-      class = "card-body text-dark",
+      class = "card-body bg-white text-dark",
       ...
     )
   )
@@ -41,7 +41,8 @@ ui <- fluidPage(
     ),
     div(
       class = "col-md-3",
-      actionButton("addRow", "Add a row")
+      actionButton("addRow", "Add a row"),
+      selectInput("position", "Position", choices = c("bottom", "top"))
     ),
     div(
       class = "col-md-3",
@@ -53,13 +54,13 @@ ui <- fluidPage(
     id = "myGrid",
     masonryRow(
       classes = "bg-info",
-      masonryItem(card(h1("hello"), plotOutput("base", width = "100%"))),
-      masonryItem(card(h2("world")))
+      masonryItem(card(h1("Plot"), plotOutput("base", width = "100%"))),
+      masonryItem(card(h2("Another card")))
     ),
     masonryRow(
       classes = "bg-warning",
-      masonryItem(card(h1("here"))),
-      masonryItem(card(h2("there"), div(p("a paragraph"))))
+      masonryItem(card(h1("A card"))),
+      masonryItem(card(h2("Paragraph"), div(p("A paragraph here."))))
     ),
     options = list(margin = ".5rem")
   )
@@ -69,7 +70,7 @@ server <- \(input, output, session) {
   output$base <- renderPlot(plot(runif(10))) 
 
   observeEvent(input$addRow, {
-    masonry_add_row("#myGrid", classes = "bg-dark")
+    masonry_add_row("#myGrid", classes = "bg-dark", position = input$position)
   })
 
   observeEvent(input$addItem, {
@@ -78,5 +79,6 @@ server <- \(input, output, session) {
 }
 
 shinyApp(ui, server, options = list(port = 3000L))
+
 ```
 
