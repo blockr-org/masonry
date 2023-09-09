@@ -1,5 +1,7 @@
+import { getGrid } from "./storage.js";
+
 export const getConfig = (opts) => {
-  let config = [];
+  let rows = [];
   $(`#${opts.target}`).find(".masonry-row").each((i, row) => {
     let items = [];
 
@@ -18,8 +20,13 @@ export const getConfig = (opts) => {
       return item;
     });
 
-    config.push(items);
+    rows.push(items);
   });
+
+  let config = {
+    opts: getGrid(`#${opts.target}`),
+    dimensions: rows,
+  };
 
   Shiny.setInputValue(`${opts.target}_config:force.raw`, config);
 };
@@ -30,4 +37,14 @@ const asPercentage = (x, total) => {
 
 const getDimensions = (el) => {
   return $(el).width();
+};
+
+export const restoreConfig = (opts) => {
+  console.log(opts);
+  $(`#${opts.target}`).find(".masonry-row").each((ri, row) => {
+    $(row).find(".masonry-item").each((ii, item) => {
+      $(item).css("width", `${opts.config.dimensions[ri][ii].percentage}%`);
+      $(item).trigger("resize");
+    });
+  });
 };

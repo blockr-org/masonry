@@ -39,3 +39,18 @@ export const addItem = (opts) => {
   let gridOpts = getGrid(opts.target);
   $(`${opts.target}`).masonry(gridOpts);
 };
+
+export const removeItem = (opts) => {
+  $(`${opts.target}`)
+    .find(".masonry-main-content")
+    .find(`.masonry-row:eq(${opts.row_index})`)
+    .find(`.masonry-item:eq(${opts.item_index})`)
+    .remove();
+};
+
+export const removeRow = (opts) => {
+  $(`${opts.target}`)
+    .find(".masonry-main-content")
+    .find(`.masonry-row:eq(${opts.row_index})`)
+    .remove();
+};

@@ -7,9 +7,9 @@
 masonry_get_config(id, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{session}{A valid shiny session.}
+\item{id}{\code{id} of target \code{\link[=masonryGrid]{masonryGrid()}}.}
 
-\item{target}{\code{id} of target \code{\link[=masonryGrid]{masonryGrid()}}.}
+\item{session}{A valid shiny session.}
 }
 \description{
 Get config \code{\link[=masonryGrid]{masonryGrid()}}.

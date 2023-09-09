@@ -79,11 +79,75 @@ masonry_add_item <- function(
   )
 }
 
+#' Remove a row
+#' 
+#' Remove a row from [masonryGrid()].
+#' 
+#' @param target `id` of target [masonryGrid()].
+#' @param row_index Index of row, an integer.
+#' @param session A valid shiny session.
+#' 
+#' @export
+masonry_remove_row <- function(
+  target, 
+  row_index,
+  session = shiny::getDefaultReactiveDomain()
+){
+  if(missing(target))
+    stop("Missing `target`")
+
+  if(missing(row_index))
+    stop("Missing `row_index`")
+
+  session$sendCustomMessage(
+    "masonry-remove-row",
+    list(
+      target = target,
+      row_index = row_index - 1L
+    )
+  )
+}
+
+#' Remove an item
+#' 
+#' Remove an item from [masonryRow()].
+#' 
+#' @param target `id` of target [masonryGrid()].
+#' @param row_index Index of row, an integer.
+#' @param item_index index of item to remove.
+#' @param session A valid shiny session.
+#' 
+#' @export
+masonry_remove_item <- function(
+  target, 
+  row_index,
+  item_index,
+  session = shiny::getDefaultReactiveDomain()
+){
+  if(missing(target))
+    stop("Missing `target`")
+
+  if(missing(row_index))
+    stop("Missing `row_index`")
+
+  if(missing(item_index))
+    stop("Missing `item_index`")
+
+  session$sendCustomMessage(
+    "masonry-remove-item",
+    list(
+      target = target,
+      row_index = row_index - 1L,
+      item_index = item_index - 1L
+    )
+  )
+}
+
 #' Get config
 #' 
 #' Get config [masonryGrid()].
 #' 
-#' @param target `id` of target [masonryGrid()].
+#' @param id `id` of target [masonryGrid()].
 #' @param session A valid shiny session.
 #' 
 #' @export
@@ -95,6 +159,29 @@ masonry_get_config <- function(
     "masonry-get-config",
     list(
       target = id
+    )
+  )
+}
+
+#' Restore config
+#' 
+#' Restore config [masonryGrid()].
+#' 
+#' @param id `id` of target [masonryGrid()].
+#' @param config Config, as obtained via [masonry_get_config()].
+#' @param session A valid shiny session.
+#' 
+#' @export
+masonry_restore_config <- function(
+  id,
+  config,
+  session = shiny::getDefaultReactiveDomain()
+) {
+  session$sendCustomMessage(
+    "masonry-restore-config",
+    list(
+      target = id,
+      config = config
     )
   )
 }
