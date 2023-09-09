@@ -35,7 +35,7 @@ card <- \(...){
 ui <- fluidPage(
   theme = bslib::bs_theme(version = 5L),
   h1("Masonry"),
-  p("You can resize and rearrange the cards below")
+  p("You can resize and rearrange the cards below"),
   masonryGrid(
     id = "myGrid",
     masonryRow(
@@ -58,6 +58,8 @@ server <- \(input, output, session) {
 
 shinyApp(ui, server, options = list(port = 3000L))
 ```
+
+![](inst/images/basic.png)
 
 __Example of all functionalities__
 
@@ -167,3 +169,4 @@ server <- \(input, output, session) {
 shinyApp(ui, server, options = list(port = 3000L))
 ```
 
+![](inst/images/full.png)
