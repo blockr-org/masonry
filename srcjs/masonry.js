@@ -85,6 +85,9 @@ const sortable = (el, opts) => {
     fallbackTolerance: 2,
     animation: 150,
     swap: false,
+    onEnd: (event) => {
+      $(event.item).trigger("resize");
+    },
   };
 
   if (opts.group) {

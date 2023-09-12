@@ -69,7 +69,7 @@ masonryItem <- \(..., width = .2, classes = ""){
     width <- round(width * 100L)
 
   div(
-    class = sprintf("masonry-item %s", classes),
+    class = sprintf("masonry-item flex-grow-1 %s", classes),
     `data-masonry-width` = width,
     ...
   )
