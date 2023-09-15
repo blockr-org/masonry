@@ -7,7 +7,8 @@ Authors@R:
             family = "Coene",
             role = c("aut", "cre"),
             email = "john@opifex.org"),
-        person(family = "Opifex", role = "cph")
+        person(family = "Bristol Myers Squibb", role = "fnd"),
+        person(family = "Bristol Myers Squibb", role = "cph")
     )
 Description: What the package does (one paragraph).
 License: GPL (>= 2)
