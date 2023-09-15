@@ -49,7 +49,9 @@ const masonRow = (el, opts) => {
     $(el).css("height", h);
   }
 
-  $(el).attr("id", identifier(20));
+  if (!$(el).attr("id")) {
+    $(el).attr("id", identifier(20));
+  }
 
   normalise(el, opts);
   masonItems(el, opts);
@@ -75,6 +77,10 @@ const masonItem = (el, opts) => {
   if (!w) w = 20;
   $(el).css("width", `${w}%`);
 
+  if ($(el).attr("id")) {
+    return;
+  }
+
   let id = identifier(20);
   $(el).attr("id", id);
 };
@@ -86,7 +92,7 @@ const sortable = (el, opts) => {
     animation: 150,
     swap: false,
     onEnd: (event) => {
-      $(event.item).trigger("resize");
+      $(event.item).closest(".masonry-row").trigger("resize");
     },
   };
 

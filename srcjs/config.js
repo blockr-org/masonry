@@ -8,6 +8,7 @@ export const getConfig = (opts) => {
     $(row).find(".masonry-item").each((i, item) => {
       let opt = {
         width: getDimensions(item),
+        id: $(item).attr("id"),
       };
 
       items.push(opt);
@@ -40,7 +41,6 @@ const getDimensions = (el) => {
 };
 
 export const restoreConfig = (opts) => {
-  console.log(opts);
   $(`#${opts.target}`).find(".masonry-row").each((ri, row) => {
     $(row).find(".masonry-item").each((ii, item) => {
       $(item).css("width", `${opts.config.dimensions[ri][ii].percentage}%`);
