@@ -31,7 +31,10 @@ const masonMain = (el, opts) => {
   masonRows(el, opts);
   listen(el, opts);
   $(el).addClass("masoned");
-  sortable(el, opts);
+
+  // sortable between rows
+  sortableItems(el, opts);
+  sortableRows($(el).find(".masonry-grid-content"), opts);
 };
 
 const masonRows = (el, opts) => {
@@ -55,7 +58,9 @@ const masonRow = (el, opts) => {
 
   normalise(el, opts);
   masonItems(el, opts);
-  sortable(el, opts);
+
+  // sortable within rows
+  sortableItems(el, opts);
 };
 
 const masonItems = (el, opts) => {
@@ -85,7 +90,7 @@ const masonItem = (el, opts) => {
   $(el).attr("id", id);
 };
 
-const sortable = (el, opts) => {
+const sortableItems = (el, opts) => {
   let sortOpts = {
     multiDrag: false,
     fallbackTolerance: 2,
@@ -101,6 +106,20 @@ const sortable = (el, opts) => {
   }
 
   new Sortable(el, sortOpts);
+};
+
+const sortableRows = (el, opts) => {
+  let sortOpts = {
+    multiDrag: false,
+    fallbackTolerance: 2,
+    animation: 150,
+    swap: false,
+    onEnd: (event) => {
+      $(event.item).trigger("resize");
+    },
+  };
+
+  new Sortable(el[0], sortOpts);
 };
 
 const normalise = (el, opts) => {

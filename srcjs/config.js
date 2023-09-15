@@ -26,9 +26,10 @@ export const getConfig = (opts) => {
 
   let config = {
     opts: getGrid(`#${opts.target}`),
-    dimensions: rows,
+    items: rows,
   };
 
+  console.log(config);
   Shiny.setInputValue(`${opts.target}_config:force.raw`, config);
 };
 
@@ -43,8 +44,14 @@ const getDimensions = (el) => {
 export const restoreConfig = (opts) => {
   $(`#${opts.target}`).find(".masonry-row").each((ri, row) => {
     $(row).find(".masonry-item").each((ii, item) => {
-      $(item).css("width", `${opts.config.dimensions[ri][ii].percentage}%`);
+      $(item).css("width", `${opts.config.items[ri][ii].percentage}%`);
       $(item).trigger("resize");
     });
+  });
+};
+
+const rearrangeConfig = (opts) => {
+  let items = [];
+  $(`#${opts.target}`).find(".masonry-row").each((ri, row) => {
   });
 };
