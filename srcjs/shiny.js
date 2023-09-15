@@ -7,7 +7,7 @@ export const addRow = (opts) => {
     data-masonry-height = ${opts.height}
     ></div>`;
 
-  let $target = $(`${opts.target}`).find(".masonry-main-content");
+  let $target = $(`${opts.target}`).find(".masonry-grid-content");
 
   if (opts.position == "bottom") {
     $target.append(row);
@@ -25,7 +25,7 @@ export const addItem = (opts) => {
   let row = `<div class='masonry-item ${opts.classes}'>${opts.item}</div>`;
 
   let $target = $(`${opts.target}`)
-    .find(".masonry-main-content")
+    .find(".masonry-grid-content")
     .find(`.masonry-row:eq(${opts.row_index})`);
 
   if (opts.position == "end") {
@@ -42,7 +42,7 @@ export const addItem = (opts) => {
 
 export const removeItem = (opts) => {
   $(`${opts.target}`)
-    .find(".masonry-main-content")
+    .find(".masonry-grid-content")
     .find(`.masonry-row:eq(${opts.row_index})`)
     .find(`.masonry-item:eq(${opts.item_index})`)
     .remove();
@@ -50,7 +50,7 @@ export const removeItem = (opts) => {
 
 export const removeRow = (opts) => {
   $(`${opts.target}`)
-    .find(".masonry-main-content")
+    .find(".masonry-grid-content")
     .find(`.masonry-row:eq(${opts.row_index})`)
     .remove();
 };

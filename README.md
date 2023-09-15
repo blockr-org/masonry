@@ -41,7 +41,7 @@ masonryGrid(
 Create HTML structure.
 
 ```html
-<div class="masonry-main">
+<div class="masonry-grid">
   <div class="masonry-row">
     <div class="masonry-item">
       <h1>Item1</h1>
@@ -56,7 +56,7 @@ Create HTML structure.
 Make interactive.
 
 ```js
-$(".masonry-main").masonry();
+$(".masonry-grid").masonry();
 ```
 
 ## Example

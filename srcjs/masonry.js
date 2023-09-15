@@ -13,12 +13,12 @@ const listen = (el, opts) => {
 };
 
 const masonMains = (el, opts) => {
-  if ($(el).hasClass("masonry-main")) {
+  if ($(el).hasClass("masonry-grid")) {
     masonMain(el[0], opts);
     return;
   }
 
-  $(el).find(".masonry-main").each((i, m) => {
+  $(el).find(".masonry-grid").each((i, m) => {
     masonMain(m, opts);
   });
 };

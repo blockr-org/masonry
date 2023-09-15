@@ -24,9 +24,9 @@ masonryGrid <- \(..., options = list(), id = NULL, classes = ""){
 
   div(
     id = id,
-    class = sprintf("masonry-main %s", classes),
+    class = sprintf("masonry-grid %s", classes),
     div(
-      class = "masonry-main-content",
+      class = "masonry-grid-content",
       masonryDependencies(),
       ...
     ),
