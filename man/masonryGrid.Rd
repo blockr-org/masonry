@@ -4,12 +4,13 @@
 \alias{masonryGrid}
 \title{Row}
 \usage{
-masonryGrid(..., options = list(), id = NULL, classes = "")
+masonryGrid(..., styles = list(), id = NULL, classes = "")
 }
 \arguments{
 \item{...}{Any number of \code{\link[=masonryRow]{masonryRow()}}.}
 
-\item{options}{\code{\link[=list]{list()}} of options.}
+\item{styles}{\code{\link[=list]{list()}} of options for \code{items} and \code{rows},
+e.g.: \code{list(items = list(margin = ".5rem"))}.}
 
 \item{id}{CSS ID of masonry element.}
 

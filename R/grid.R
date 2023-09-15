@@ -3,7 +3,8 @@
 #' Masonry row
 #' 
 #' @param ... Any number of [masonryRow()].
-#' @param options [list()] of options.
+#' @param styles [list()] of options for `items` and `rows`, 
+#'  e.g.: `list(items = list(margin = ".5rem"))`.
 #' @param id CSS ID of masonry element.
 #' @param classes Any additional classes.
 #' 
@@ -11,11 +12,11 @@
 #' @importFrom jsonlite toJSON
 #' 
 #' @export
-masonryGrid <- \(..., options = list(), id = NULL, classes = ""){
+masonryGrid <- \(..., styles = list(), id = NULL, classes = ""){
   if(is.null(id))
     id <- identifier()
 
-  options <- options |>
+  options <- styles |>
     as.list() |>
     toJSON(auto_unbox = TRUE) |>
     as.character()

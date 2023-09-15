@@ -70,12 +70,10 @@ const masonItems = (el, opts) => {
 };
 
 const masonItem = (el, opts) => {
-  if (opts.padding) {
-    $(el).css("padding", opts.padding);
-  }
-
-  if (opts.margin) {
-    $(el).css("margin", opts.margin);
+  if (opts.items) {
+    for (const key in opts.items) {
+      $(el).css(key, opts.items[key]);
+    }
   }
 
   let w = $(el).data("masonry-width");
