@@ -14,6 +14,51 @@ You can install the development version of masonry from [GitHub](https://github.
 remotes::install_github("devOpifex/masonry")
 ```
 
+## Usage R
+
+Similar to using `fluidRow` and `column`, create a `masonryGrid`,
+place `masonryRow` as children into which you can place `masonryItem`.
+
+```r
+masonryGrid(
+  id = "myGrid",
+  masonryRow(
+    classes = "bg-info",
+    masonryItem(card(h1("A card"))),
+    masonryItem(card(h2("Another card")))
+  ),
+  masonryRow(
+    classes = "bg-warning",
+    masonryItem(card(h1("Yet another card"))),
+    masonryItem(card(p("A paragraph")))
+  ),
+  options = list(margin = ".5rem")
+)
+```
+
+## Usage JavaScript
+
+Create HTML structure.
+
+```html
+<div class="masonry-main">
+  <div class="masonry-row">
+    <div class="masonry-item">
+      <h1>Item1</h1>
+    </div>
+    <div class="masonry-item">
+      <h1>Item2</h1>
+    </div>
+  </div>
+</div>
+```
+
+Make interactive.
+
+```js
+$(".masonry-main").masonry();
+```
+
 ## Example
 
 __Basic Example__
