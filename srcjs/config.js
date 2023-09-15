@@ -21,12 +21,17 @@ export const getConfig = (opts) => {
       return item;
     });
 
-    rows.push(items);
+    let r = {
+      id: $(row).attr("id"),
+      items: items,
+    };
+
+    rows.push(r);
   });
 
   let config = {
     opts: getGrid(`#${opts.target}`),
-    items: rows,
+    grid: rows,
   };
 
   console.log(config);
@@ -42,16 +47,64 @@ const getDimensions = (el) => {
 };
 
 export const restoreConfig = (opts) => {
+  rearrangeGrid(opts);
+
+  // resize widths
   $(`#${opts.target}`).find(".masonry-row").each((ri, row) => {
     $(row).find(".masonry-item").each((ii, item) => {
-      $(item).css("width", `${opts.config.items[ri][ii].percentage}%`);
+      $(item).css("width", `${opts.config.grid[ri].items[ii].percentage}%`);
       $(item).trigger("resize");
     });
   });
 };
 
-const rearrangeConfig = (opts) => {
+const rearrangeGrid = (opts) => {
   let items = [];
+
   $(`#${opts.target}`).find(".masonry-row").each((ri, row) => {
+    let cRowId = $(row).attr("id");
+    let oRowId = opts.config.grid[ri].id;
+
+    // row ids match
+    if (cRowId == oRowId) {
+      $(row).find(".masonry-item").each((ii, item) => {
+        let cItemId = $(item).attr("id");
+
+        if ((ii + 1) > opts.config.grid[ri].items.length) {
+          return;
+        }
+
+        let oItemId = opts.config.grid[ri].items[ii].id;
+
+        // items id do not match
+        if (cItemId != oItemId) {
+          $(`#${oItemId}`).prependTo(row);
+        }
+
+        // items id do match
+        // nothing to do
+      });
+
+      return;
+    }
+
+    // row ids do not match
+    // still check if ids need reorder
+    $(row).find(".masonry-item").each((ii, item) => {
+      let cItemId = $(item).attr("id");
+      let oItemId = opts.config.grid[ri].items[ii].id;
+
+      if (ii > (opts.config.grid[ri].items.length - 1)) {
+        return;
+      }
+
+      // items id do not match
+      if (cItemId != oItemId) {
+        $(`#${oItemId}`).prependTo(row);
+      }
+
+      // items id do match
+      // nothing to do
+    });
   });
 };
