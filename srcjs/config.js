@@ -60,50 +60,19 @@ export const restoreConfig = (opts) => {
 const rearrangeGrid = (opts) => {
   let items = [];
 
-  $(`#${opts.target}`).find(".masonry-row").each((ri, row) => {
-    let cRowId = $(row).attr("id");
-    let oRowId = opts.config.grid[ri].id;
+  opts.config.grid.map((row, rowIndex) => {
+    const existingRowId = $(`#${opts.target}`).find(
+      `.masonry-row:eq(${rowIndex})`,
+    ).attr("id");
+    const toRowId = row.id;
 
-    // row ids match
-    if (cRowId == oRowId) {
-      $(row).find(".masonry-item").each((ii, item) => {
-        let cItemId = $(item).attr("id");
+    row.items.map((item, itemIndex) => {
+      const existingItemId = $(`#${opts.target}`).find(
+        `.masonry-item:eq(${itemIndex})`,
+      ).attr("id");
+      const toItemId = item.id;
 
-        if ((ii + 1) > opts.config.grid[ri].items.length) {
-          return;
-        }
-
-        let oItemId = opts.config.grid[ri].items[ii].id;
-
-        // items id do not match
-        if (cItemId != oItemId) {
-          $(`#${oItemId}`).prependTo(row);
-        }
-
-        // items id do match
-        // nothing to do
-      });
-
-      return;
-    }
-
-    // row ids do not match
-    // still check if ids need reorder
-    $(row).find(".masonry-item").each((ii, item) => {
-      let cItemId = $(item).attr("id");
-      let oItemId = opts.config.grid[ri].items[ii].id;
-
-      if (ii > (opts.config.grid[ri].items.length - 1)) {
-        return;
-      }
-
-      // items id do not match
-      if (cItemId != oItemId) {
-        $(`#${oItemId}`).prependTo(row);
-      }
-
-      // items id do match
-      // nothing to do
+      $(`#${toItemId}`).appendTo(`#${toRowId}`);
     });
   });
 };
