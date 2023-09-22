@@ -11,7 +11,7 @@ You can install the development version of masonry from [GitHub](https://github.
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("devOpifex/masonry")
+remotes::install_github("blockr-org/masonry")
 ```
 
 ## Usage R
