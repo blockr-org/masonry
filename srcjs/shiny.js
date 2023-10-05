@@ -54,3 +54,20 @@ export const removeRow = (opts) => {
     .find(`.masonry-row:eq(${opts.row_index})`)
     .remove();
 };
+
+var masonryBinding = new Shiny.OutputBinding();
+
+$.extend(masonryBinding, {
+  find: function (scope) {
+    return $(scope).find(".masonry-grid");
+  },
+  renderValue: function (el, data) {
+    Shiny.renderContentAsync(el, data.content)
+      .then(() => {
+        $(el).masonry(data.options);
+      });
+  },
+});
+
+// register
+Shiny.outputBindings.register(masonryBinding, "masonry.masonry");
