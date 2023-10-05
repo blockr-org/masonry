@@ -191,8 +191,9 @@ masonry_restore_config <- function(
 #' Render Masonry grid.
 #' 
 #' @inheritParams masonryGrid
-#' @inheritParams expr Expression returning [masonryGrid()].
-#' @inheritParams env Environment to evaluate the `expr`.
+#' @param expr Expression returning [masonryGrid()].
+#' @param env Environment to evaluate the `expr`.
+#' @param quoted Whether to quote the expression.
 #' 
 #' @export
 masonryOutput <- function(id, styles = list(), classes = ""){
@@ -214,6 +215,8 @@ masonryOutput <- function(id, styles = list(), classes = ""){
   )
 }
 
+#' @rdname masonryOutput
+#' @export
 renderMasonry <- function(expr, env = parent.frame(),
   quoted = FALSE) {
   # Convert the expression + environment into a function

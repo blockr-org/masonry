@@ -2,9 +2,12 @@
 % Please edit documentation in R/shiny.R
 \name{masonryOutput}
 \alias{masonryOutput}
+\alias{renderMasonry}
 \title{Masonry Shiny}
 \usage{
 masonryOutput(id, styles = list(), classes = "")
+
+renderMasonry(expr, env = parent.frame(), quoted = FALSE)
 }
 \arguments{
 \item{id}{CSS ID of masonry element.}
@@ -13,6 +16,12 @@ masonryOutput(id, styles = list(), classes = "")
 e.g.: \code{list(items = list(margin = ".5rem"))}.}
 
 \item{classes}{Any additional classes.}
+
+\item{expr}{Expression returning \code{\link[=masonryGrid]{masonryGrid()}}.}
+
+\item{env}{Environment to evaluate the \code{expr}.}
+
+\item{quoted}{Whether to quote the expression.}
 }
 \description{
 Render Masonry grid.
