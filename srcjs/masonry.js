@@ -94,6 +94,7 @@ const sortableItems = (el, opts) => {
     fallbackTolerance: 2,
     animation: 150,
     swap: false,
+    draggable: ".masonry-item",
     onEnd: (event) => {
       $(event.item).closest(".masonry-row").trigger("resize");
     },
@@ -112,6 +113,7 @@ const sortableRows = (el, opts) => {
     fallbackTolerance: 2,
     animation: 150,
     swap: false,
+    draggable: ".masonry-row",
     onEnd: (event) => {
       $(event.item).trigger("resize");
     },
