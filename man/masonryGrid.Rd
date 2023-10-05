@@ -4,7 +4,7 @@
 \alias{masonryGrid}
 \title{Row}
 \usage{
-masonryGrid(..., styles = list(), id = NULL, classes = "")
+masonryGrid(..., styles = list(), classes = "", id = NULL)
 }
 \arguments{
 \item{...}{Any number of \code{\link[=masonryRow]{masonryRow()}}.}
@@ -12,9 +12,9 @@ masonryGrid(..., styles = list(), id = NULL, classes = "")
 \item{styles}{\code{\link[=list]{list()}} of options for \code{items} and \code{rows},
 e.g.: \code{list(items = list(margin = ".5rem"))}.}
 
-\item{id}{CSS ID of masonry element.}
-
 \item{classes}{Any additional classes.}
+
+\item{id}{ID of grid.}
 }
 \description{
 Masonry row

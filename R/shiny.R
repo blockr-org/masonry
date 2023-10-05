@@ -1,3 +1,25 @@
+#' Mason
+#' 
+#' Mason a rendered [masonryGrid()].
+#' 
+#' @param target `id` of target [masonryGrid()].
+#' @param session A valid shiny session.
+#' 
+#' @export
+mason <- function(
+  target, 
+  session = shiny::getDefaultReactiveDomain()
+){
+  if(missing(target))
+    stop("Missing `target`")
+
+  session$sendCustomMessage(
+    "masonry-run",
+    list(
+      target = target
+    )
+  )
+}
 #' Add a row
 #' 
 #' Add a row to [masonryGrid()].
@@ -7,15 +29,14 @@
 #' @param classes Additional classes to add to the row.
 #' @param position Whether to add the new row at the `top`
 #'  or the `bottom`.
-#' @inheritParams masonryRow
+#' @param content Initial content of the row.
 #' 
 #' @export
 masonry_add_row <- function(
   target, 
+  content = "",
   position = c("bottom", "top"), 
   classes = "",
-  min_height = "5rem", 
-  height = NULL,
   session = shiny::getDefaultReactiveDomain()
 ){
   if(missing(target))
@@ -29,8 +50,7 @@ masonry_add_row <- function(
       target = target,
       classes = classes,
       position = position,
-      min_height = min_height,
-      height = height
+      content = as.character(content)
     )
   )
 }
@@ -191,6 +211,7 @@ masonry_restore_config <- function(
 #' Render Masonry grid.
 #' 
 #' @inheritParams masonryGrid
+#' @param id ID of masonryGrid.
 #' @param expr Expression returning [masonryGrid()].
 #' @param env Environment to evaluate the `expr`.
 #' @param quoted Whether to quote the expression.
@@ -207,23 +228,23 @@ masonryOutput <- function(id, styles = list(), classes = ""){
 
   div(
     id = id,
-    class = sprintf("masonry-grid %s", classes),
-    div(
-      class = "masonry-grid-content",
-      masonryDependencies()
-    )
+    class = "masonry-grid-shiny",
+    masonryDependencies()
   )
 }
 
 #' @rdname masonryOutput
 #' @export
-renderMasonry <- function(expr, env = parent.frame(),
-  quoted = FALSE) {
+renderMasonry <- function(expr, styles = list(), env = parent.frame(), quoted = FALSE) {
   # Convert the expression + environment into a function
   func <- shiny::exprToFunction(expr, env, quoted)
 
   function(){
-    func()
+    content <- func() |> as.character()
+    list(
+      content = content,
+      options = styles |> as.list()
+    )
   }
 }
 

@@ -1,11 +1,11 @@
 import { getGrid } from "./storage.js";
+import { identifier } from "./id.js";
 
 export const addRow = (opts) => {
-  let row = `<div 
-    class='masonry-row d-flex ${opts.classes}'
-    data-masonry-minheight = ${opts.min_height}
-    data-masonry-height = ${opts.height}
-    ></div>`;
+  opts.id = identifier();
+
+  let row =
+    `<div id="${opts.id}" class='masonry-row d-flex ${opts.classes}'></div>`;
 
   let $target = $(`${opts.target}`).find(".masonry-grid-content");
 
@@ -17,8 +17,14 @@ export const addRow = (opts) => {
     $target.prepend(row);
   }
 
-  const gridOpts = getGrid(opts.target);
-  $(`${opts.target}`).masonry(gridOpts);
+  Shiny.renderContentAsync($(`#${opts.id}`), opts.content)
+    .then(() => {
+      const gridOpts = getGrid(opts.target);
+      $(`${opts.target}`).masonry(gridOpts);
+
+      const event = new CustomEvent("masonry:added-row", { detail: opts.id });
+      document.dispatchEvent(event);
+    });
 };
 
 export const addItem = (opts) => {
@@ -59,7 +65,7 @@ var masonryBinding = new Shiny.OutputBinding();
 
 $.extend(masonryBinding, {
   find: function (scope) {
-    return $(scope).find(".masonry-grid");
+    return $(scope).find(".masonry-grid-shiny");
   },
   renderValue: function (el, data) {
     Shiny.renderContentAsync(el, data.content)

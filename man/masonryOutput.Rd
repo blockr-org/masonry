@@ -7,10 +7,10 @@
 \usage{
 masonryOutput(id, styles = list(), classes = "")
 
-renderMasonry(expr, env = parent.frame(), quoted = FALSE)
+renderMasonry(expr, styles = list(), env = parent.frame(), quoted = FALSE)
 }
 \arguments{
-\item{id}{CSS ID of masonry element.}
+\item{id}{ID of masonryGrid.}
 
 \item{styles}{\code{\link[=list]{list()}} of options for \code{items} and \code{rows},
 e.g.: \code{list(items = list(margin = ".5rem"))}.}

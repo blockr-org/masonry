@@ -2,34 +2,32 @@
 #' 
 #' Masonry row
 #' 
+#' @param id ID of grid.
 #' @param ... Any number of [masonryRow()].
 #' @param styles [list()] of options for `items` and `rows`, 
 #'  e.g.: `list(items = list(margin = ".5rem"))`.
-#' @param id CSS ID of masonry element.
 #' @param classes Any additional classes.
 #' 
 #' @importFrom htmltools div tags HTML
 #' @importFrom jsonlite toJSON
 #' 
 #' @export
-masonryGrid <- \(..., styles = list(), id = NULL, classes = ""){
-  if(is.null(id))
-    id <- identifier()
+masonryGrid <- \(..., styles = list(), classes = "", id = NULL){
+  options <- styles |>
+    as.list() |>
+    jsonlite::toJSON(auto_unbox = TRUE) |>
+    as.character()
 
-  content <- div(
+  div(
     id = id,
+    `data-styles` = options,
     class = sprintf("masonry-grid %s", classes),
     div(
       class = "masonry-grid-content",
       ...
-    )
+    ),
+    masonryDependencies()
   )
-
-  list(
-    options = as.list(styles),
-    content = as.character(content)
-  ) |>
-    invisible()
 }
 
 #' Row

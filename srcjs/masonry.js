@@ -2,7 +2,12 @@ import { identifier } from "./id.js";
 import { setGrid } from "./storage.js";
 
 export const masonry = (el, opts) => {
-  opts = opts || {};
+  if (Array.isArray(opts)) {
+    opts = null;
+  }
+
+  opts = opts || $(el).data("styles") || {};
+
   masonMains(el, opts);
 };
 
@@ -50,6 +55,12 @@ const masonRow = (el, opts) => {
   const h = $(el).data("masonry-height");
   if (h) {
     $(el).css("height", h);
+  }
+
+  if (opts.rows) {
+    for (const key in opts.rows) {
+      $(el).css(key, opts.rows[key]);
+    }
   }
 
   if (!$(el).attr("id")) {

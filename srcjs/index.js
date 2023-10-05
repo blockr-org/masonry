@@ -15,3 +15,6 @@ Shiny.addCustomMessageHandler("masonry-remove-item", removeItem);
 Shiny.addCustomMessageHandler("masonry-remove-row", removeRow);
 Shiny.addCustomMessageHandler("masonry-get-config", getConfig);
 Shiny.addCustomMessageHandler("masonry-restore-config", restoreConfig);
+Shiny.addCustomMessageHandler("masonry-run", (msg) => {
+  $(msg.target).masonry();
+});

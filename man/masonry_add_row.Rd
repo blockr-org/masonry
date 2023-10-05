@@ -6,26 +6,21 @@
 \usage{
 masonry_add_row(
   target,
+  content = "",
   position = c("bottom", "top"),
   classes = "",
-  min_height = "5rem",
-  height = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
 \item{target}{\code{id} of target \code{\link[=masonryGrid]{masonryGrid()}}.}
 
+\item{content}{Initial content of the row.}
+
 \item{position}{Whether to add the new row at the \code{top}
 or the \code{bottom}.}
 
 \item{classes}{Additional classes to add to the row.}
-
-\item{min_height}{Minimum height of row, a valid CSS value.
-This is used because if not set the row goes to 0 height if empty
-and users can then no longer drag \code{\link[=masonryItem]{masonryItem()}} to it.}
-
-\item{height}{Height, fixed height of the row.}
 
 \item{session}{A valid shiny session.}
 }
