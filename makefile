@@ -12,6 +12,3 @@ bundle:
 
 run: document
 	Rscript test.R
-
-install:
-	R -e "devtools::install()"

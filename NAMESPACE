@@ -3,6 +3,7 @@
 export(masonryDependencies)
 export(masonryGrid)
 export(masonryItem)
+export(masonryOutput)
 export(masonryRow)
 export(masonry_add_item)
 export(masonry_add_row)

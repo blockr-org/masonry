@@ -16,23 +16,20 @@ masonryGrid <- \(..., styles = list(), id = NULL, classes = ""){
   if(is.null(id))
     id <- identifier()
 
-  options <- styles |>
-    as.list() |>
-    toJSON(auto_unbox = TRUE) |>
-    as.character()
-
-  script <- sprintf("$('#%s').masonry(%s);", id, options)
-
-  div(
+  content <- div(
     id = id,
     class = sprintf("masonry-grid %s", classes),
     div(
       class = "masonry-grid-content",
-      masonryDependencies(),
       ...
-    ),
-    tags$script(HTML(script))
+    )
   )
+
+  list(
+    options = as.list(styles),
+    content = as.character(content)
+  ) |>
+    invisible()
 }
 
 #' Row

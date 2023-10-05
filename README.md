@@ -81,23 +81,27 @@ ui <- fluidPage(
   theme = bslib::bs_theme(version = 5L),
   h1("Masonry"),
   p("You can resize and rearrange the cards below"),
-  masonryGrid(
-    id = "myGrid",
-    masonryRow(
-      classes = "bg-info",
-      masonryItem(card(h1("Plot"), plotOutput("base", width = "100%"))),
-      masonryItem(card(h2("Another card")))
-    ),
-    masonryRow(
-      classes = "bg-warning",
-      masonryItem(card(h1("A card"))),
-      masonryItem(card(h2("Paragraph"), div(p("A paragraph here."))))
-    ),
-    options = list(margin = ".5rem")
-  )
+  outputMasonry("masonry")
 )
 
 server <- \(input, output, session) {
+  output$masonry <- renderMasonry({
+    masonryGrid(
+      id = "myGrid",
+      masonryRow(
+        classes = "bg-info",
+        masonryItem(card(h1("Plot"), plotOutput("base", width = "100%"))),
+        masonryItem(card(h2("Another card")))
+      ),
+      masonryRow(
+        classes = "bg-warning",
+        masonryItem(card(h1("A card"))),
+        masonryItem(card(h2("Paragraph"), div(p("A paragraph here."))))
+      ),
+      options = list(margin = ".5rem")
+    )
+  })
+
   output$base <- renderPlot(plot(runif(10))) 
 }
 

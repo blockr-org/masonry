@@ -185,3 +185,42 @@ masonry_restore_config <- function(
     )
   )
 }
+
+#' Masonry Shiny
+#' 
+#' Render Masonry grid.
+#' 
+#' @inheritParams masonryGrid
+#' @inheritParams expr Expression returning [masonryGrid()].
+#' @inheritParams env Environment to evaluate the `expr`.
+#' 
+#' @export
+masonryOutput <- function(id, styles = list(), classes = ""){
+  if(missing(id))
+    stop("missing id")
+
+  options <- styles |>
+    as.list() |>
+    toJSON(auto_unbox = TRUE) |>
+    as.character()
+
+  div(
+    id = id,
+    class = sprintf("masonry-grid %s", classes),
+    div(
+      class = "masonry-grid-content",
+      masonryDependencies()
+    )
+  )
+}
+
+renderMasonry <- function(expr, env = parent.frame(),
+  quoted = FALSE) {
+  # Convert the expression + environment into a function
+  func <- shiny::exprToFunction(expr, env, quoted)
+
+  function(){
+    func()
+  }
+}
+
