@@ -5,5 +5,5 @@ export const setGrid = (id, opts) => {
 };
 
 export const getGrid = (id) => {
-  return grids[id];
+  return grids[id.replace("#", "")];
 };
