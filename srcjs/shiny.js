@@ -30,9 +30,16 @@ export const addRow = (opts) => {
 export const addItem = (opts) => {
   let row = `<div class='masonry-item ${opts.classes}'>${opts.item}</div>`;
 
-  let $target = $(`${opts.target}`)
-    .find(".masonry-grid-content")
-    .find(`.masonry-row:eq(${opts.row_index})`);
+  let $target;
+  if (!opts.row_id) {
+    $target = $(`${opts.target}`)
+      .find(".masonry-grid-content")
+      .find(`.masonry-row:eq(${opts.row_index})`);
+  }
+
+  if (opts.row_id) {
+    $target = $(`${opts.row_id}`);
+  }
 
   if (opts.position == "end") {
     $target.append(row);

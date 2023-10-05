@@ -6,7 +6,8 @@
 \usage{
 masonry_add_item(
   target,
-  row_index,
+  row_index = NULL,
+  row_id = NULL,
   item,
   position = c("start", "end"),
   classes = "",
@@ -16,7 +17,7 @@ masonry_add_item(
 \arguments{
 \item{target}{\code{id} of target \code{\link[=masonryGrid]{masonryGrid()}}.}
 
-\item{row_index}{Index of row, an integer.}
+\item{row_index, row_id}{Index of id of row.}
 
 \item{item}{htmltools \code{tags}, the content of the item.}
 

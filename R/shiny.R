@@ -60,7 +60,7 @@ masonry_add_row <- function(
 #' Add an item to [masonryRow()].
 #' 
 #' @param target `id` of target [masonryGrid()].
-#' @param row_index Index of row, an integer.
+#' @param row_index,row_id Index of id of row.
 #' @param item htmltools `tags`, the content of the item.
 #' @param session A valid shiny session.
 #' @param classes Additional classes to add to the row.
@@ -70,7 +70,8 @@ masonry_add_row <- function(
 #' @export
 masonry_add_item <- function(
   target, 
-  row_index,
+  row_index = NULL,
+  row_id = NULL,
   item,
   position = c("start", "end"), 
   classes = "",
@@ -79,11 +80,14 @@ masonry_add_item <- function(
   if(missing(target))
     stop("Missing `target`")
 
-  if(missing(row_index))
+  if(is.null(row_index) && is.null(row_id))
     stop("Missing `row_index`")
 
   if(missing(item))
     stop("Missing `item`")
+
+  if(is.null(row_index))
+    row_index <- 0
 
   position <- match.arg(position)
 
@@ -94,6 +98,7 @@ masonry_add_item <- function(
       classes = classes,
       position = position,
       row_index = row_index - 1L,
+      row_id = row_id,
       item = as.character(item)
     )
   )
