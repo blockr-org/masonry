@@ -28,7 +28,8 @@ export const addRow = (opts) => {
 };
 
 export const addItem = (opts) => {
-  let row = `<div class='masonry-item ${opts.classes}'>${opts.item}</div>`;
+  opts.id = identifier();
+  let row = `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
 
   let $target;
   if (!opts.row_id) {
@@ -49,10 +50,13 @@ export const addItem = (opts) => {
     $target.prepend(row);
   }
 
-  let gridOpts = getGrid(opts.target);
-  $(`${opts.target}`).masonry(gridOpts);
-  const event = new CustomEvent("masonry:added-item");
-  document.dispatchEvent(event);
+  Shiny.renderContentAsync($(`#${opts.id}`), opts.item)
+    .then(() => {
+      let gridOpts = getGrid(opts.target);
+      $(`${opts.target}`).masonry(gridOpts);
+      const event = new CustomEvent("masonry:added-item");
+      document.dispatchEvent(event);
+    });
 };
 
 export const removeItem = (opts) => {
