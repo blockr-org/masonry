@@ -4,3 +4,7 @@ identifier <- \(n = 20L){
     paste0(collapse = "") |>
     (\(.)paste0("_", .))()
 }
+
+process_deps <- function(...) {
+  getFromNamespace("processDeps", "shiny")(...)
+}

@@ -17,13 +17,18 @@ export const addRow = (opts) => {
     $target.prepend(row);
   }
 
-  Shiny.renderContentAsync($(`#${opts.id}`), opts.content)
+  Shiny.renderDependenciesAsync(opts.content.deps)
     .then(() => {
-      const gridOpts = getGrid(opts.target);
-      $(`${opts.target}`).masonry(gridOpts);
+      Shiny.renderContentAsync($(`#${opts.id}`), opts.content.html)
+        .then(() => {
+          const gridOpts = getGrid(opts.target);
+          $(`${opts.target}`).masonry(gridOpts);
 
-      const event = new CustomEvent("masonry:added-row", { detail: opts.id });
-      document.dispatchEvent(event);
+          const event = new CustomEvent("masonry:added-row", {
+            detail: opts.id,
+          });
+          document.dispatchEvent(event);
+        });
     });
 };
 
@@ -50,12 +55,18 @@ export const addItem = (opts) => {
     $target.prepend(row);
   }
 
-  Shiny.renderContentAsync($(`#${opts.id}`), opts.item)
+  Shiny.renderDependenciesAsync(opts.item.deps)
     .then(() => {
-      let gridOpts = getGrid(opts.target);
-      $(`${opts.target}`).masonry(gridOpts);
-      const event = new CustomEvent("masonry:added-item");
-      document.dispatchEvent(event);
+      Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html)
+        .then(() => {
+          const gridOpts = getGrid(opts.target);
+          $(`${opts.target}`).masonry(gridOpts);
+
+          const event = new CustomEvent("masonry:added-item", {
+            detail: opts.id,
+          });
+          document.dispatchEvent(event);
+        });
     });
 };
 

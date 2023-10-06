@@ -50,7 +50,7 @@ masonry_add_row <- function(
       target = target,
       classes = classes,
       position = position,
-      content = as.character(content)
+      content = process_deps(content, session)
     )
   )
 }
@@ -99,7 +99,7 @@ masonry_add_item <- function(
       position = position,
       row_index = row_index - 1L,
       row_id = row_id,
-      item = as.character(item)
+      item = process_deps(item, session)
     )
   )
 }
