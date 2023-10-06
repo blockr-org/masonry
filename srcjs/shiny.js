@@ -51,6 +51,8 @@ export const addItem = (opts) => {
 
   let gridOpts = getGrid(opts.target);
   $(`${opts.target}`).masonry(gridOpts);
+  const event = new CustomEvent("masonry:added-item");
+  document.dispatchEvent(event);
 };
 
 export const removeItem = (opts) => {
