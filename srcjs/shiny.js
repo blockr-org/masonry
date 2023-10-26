@@ -4,10 +4,10 @@ import { identifier } from "./id.js";
 export const addRow = (opts) => {
   opts.id = identifier();
 
-  let row =
+  const row =
     `<div id="${opts.id}" class='masonry-row d-flex ${opts.classes}'></div>`;
 
-  let $target = $(`${opts.target}`).find(".masonry-grid-content");
+  const $target = $(`${opts.target}`).find(".masonry-grid-content");
 
   if (opts.position == "bottom") {
     $target.append(row);
@@ -34,7 +34,8 @@ export const addRow = (opts) => {
 
 export const addItem = (opts) => {
   opts.id = identifier();
-  let row = `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
+  const row =
+    `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
 
   let $target;
   if (!opts.row_id) {
@@ -90,7 +91,7 @@ export const removeRow = (opts) => {
     .remove();
 };
 
-var masonryBinding = new Shiny.OutputBinding();
+const masonryBinding = new Shiny.OutputBinding();
 
 $.extend(masonryBinding, {
   find: function (scope) {

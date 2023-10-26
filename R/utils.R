@@ -6,5 +6,5 @@ identifier <- \(n = 20L){
 }
 
 process_deps <- function(...) {
-  getFromNamespace("processDeps", "shiny")(...)
+  utils::getFromNamespace("processDeps", "shiny")(...)
 }
