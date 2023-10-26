@@ -71,6 +71,11 @@ export const addItem = (opts) => {
 };
 
 export const removeItem = (opts) => {
+  if (opts.item_id) {
+    $(`#${opts.item_id}`).remove();
+    return;
+  }
+
   $(`${opts.target}`)
     .find(".masonry-grid-content")
     .find(`.masonry-row:eq(${opts.row_index})`)

@@ -6,8 +6,9 @@
 \usage{
 masonry_remove_item(
   target,
-  row_index,
-  item_index,
+  row_index = NULL,
+  item_index = NULL,
+  item_id = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -17,6 +18,9 @@ masonry_remove_item(
 \item{row_index}{Index of row, an integer.}
 
 \item{item_index}{index of item to remove.}
+
+\item{item_id}{Item id to remove, \code{row_index} may be \code{NULL}
+if this is set.}
 
 \item{session}{A valid shiny session.}
 }

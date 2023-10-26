@@ -141,12 +141,15 @@ masonry_remove_row <- function(
 #' @param row_index Index of row, an integer.
 #' @param item_index index of item to remove.
 #' @param session A valid shiny session.
+#' @param item_id Item id to remove, `row_index` may be `NULL`
+#'  if this is set.
 #' 
 #' @export
 masonry_remove_item <- function(
   target, 
-  row_index,
-  item_index,
+  row_index = NULL,
+  item_index = NULL,
+  item_id = NULL,
   session = shiny::getDefaultReactiveDomain()
 ){
   if(missing(target))
@@ -155,15 +158,22 @@ masonry_remove_item <- function(
   if(missing(row_index))
     stop("Missing `row_index`")
 
-  if(missing(item_index))
-    stop("Missing `item_index`")
+  if(is.null(item_id) && is.null(item_index))
+    stop("Must set `item_index` or `item_id`")
+
+  if(!is.null(item_index) && is.null(row_index))
+    stop("Must set `row_index` if `item_index` set")
+
+  if(is.null(row_index))
+    row_index <- 1L
 
   session$sendCustomMessage(
     "masonry-remove-item",
     list(
       target = target,
       row_index = row_index - 1L,
-      item_index = item_index - 1L
+      item_index = item_index - 1L,
+      item_id = item_id
     )
   )
 }
