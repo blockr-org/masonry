@@ -4,7 +4,12 @@
 \alias{masonryGrid}
 \title{Row}
 \usage{
-masonryGrid(..., styles = list(), classes = "", id = NULL)
+masonryGrid(
+  ...,
+  styles = list(row = list(`min-height` = "5rem")),
+  classes = "",
+  id = NULL
+)
 }
 \arguments{
 \item{...}{Any number of \code{\link[=masonryRow]{masonryRow()}}.}

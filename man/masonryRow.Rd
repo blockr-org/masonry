@@ -4,16 +4,10 @@
 \alias{masonryRow}
 \title{Row}
 \usage{
-masonryRow(..., min_height = "5rem", height = NULL, classes = "")
+masonryRow(..., classes = "")
 }
 \arguments{
 \item{...}{Any number of \code{\link[=masonryItem]{masonryItem()}}.}
-
-\item{min_height}{Minimum height of row, a valid CSS value.
-This is used because if not set the row goes to 0 height if empty
-and users can then no longer drag \code{\link[=masonryItem]{masonryItem()}} to it.}
-
-\item{height}{Height, fixed height of the row.}
 
 \item{classes}{Any additional classes.}
 }

@@ -12,7 +12,7 @@
 #' @importFrom jsonlite toJSON
 #' 
 #' @export
-masonryGrid <- \(..., styles = list(), classes = "", id = NULL){
+masonryGrid <- \(..., styles = list(row = list("min-height" = "5rem")), classes = "", id = NULL){
   options <- styles |>
     as.list() |>
     jsonlite::toJSON(auto_unbox = TRUE) |>
@@ -35,18 +35,12 @@ masonryGrid <- \(..., styles = list(), classes = "", id = NULL){
 #' Masonry row
 #' 
 #' @param ... Any number of [masonryItem()].
-#' @param height Height, fixed height of the row.
-#' @param min_height Minimum height of row, a valid CSS value.
-#'  This is used because if not set the row goes to 0 height if empty
-#'  and users can then no longer drag [masonryItem()] to it.
 #' @param classes Any additional classes.
 #' 
 #' @export
-masonryRow <- \(..., min_height = "5rem", height = NULL, classes = ""){
+masonryRow <- \(..., classes = ""){
   div(
     class = sprintf("masonry-row d-flex %s", classes),
-    `data-masonry-minheight` = min_height,
-    `data-masonry-height` = height,
     ...
   )
 }

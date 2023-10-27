@@ -11,7 +11,7 @@ export const masonry = (el, opts) => {
   masonMains(el, opts);
 };
 
-const listen = (el, opts) => {
+const listen = (el, _opts) => {
   $(el).find(".masonry-item").on("mouseup", (event) => {
     $(event.target).trigger("resize");
   });
@@ -23,7 +23,7 @@ const masonMains = (el, opts) => {
     return;
   }
 
-  $(el).find(".masonry-grid").each((i, m) => {
+  $(el).find(".masonry-grid").each((_i, m) => {
     masonMain(m, opts);
   });
 };
@@ -43,20 +43,12 @@ const masonMain = (el, opts) => {
 };
 
 const masonRows = (el, opts) => {
-  $(el).find(".masonry-row").each((i, row) => {
+  $(el).find(".masonry-row").each((_i, row) => {
     masonRow(row, opts);
   });
 };
 
 const masonRow = (el, opts) => {
-  const mh = $(el).data("masonry-minheight");
-  $(el).css("min-height", mh);
-
-  const h = $(el).data("masonry-height");
-  if (h) {
-    $(el).css("height", h);
-  }
-
   if (opts.rows) {
     for (const key in opts.rows) {
       $(el).css(key, opts.rows[key]);
@@ -75,7 +67,7 @@ const masonRow = (el, opts) => {
 };
 
 const masonItems = (el, opts) => {
-  $(el).find(".masonry-item").each((i, item) => {
+  $(el).find(".masonry-item").each((_i, item) => {
     masonItem(item, opts);
   });
 };
@@ -95,12 +87,12 @@ const masonItem = (el, opts) => {
     return;
   }
 
-  let id = identifier(20);
+  const id = identifier(20);
   $(el).attr("id", id);
 };
 
 const sortableItems = (el, opts) => {
-  let sortOpts = {
+  const sortOpts = {
     multiDrag: false,
     fallbackTolerance: 2,
     animation: 150,
@@ -118,8 +110,8 @@ const sortableItems = (el, opts) => {
   new Sortable(el, sortOpts);
 };
 
-const sortableRows = (el, opts) => {
-  let sortOpts = {
+const sortableRows = (el, _opts) => {
+  const sortOpts = {
     multiDrag: false,
     fallbackTolerance: 2,
     animation: 150,
@@ -133,9 +125,9 @@ const sortableRows = (el, opts) => {
   new Sortable(el[0], sortOpts);
 };
 
-const normalise = (el, opts) => {
-  let widths = [];
-  $(el).find(".masonry-item").each((i, item) => {
+const normalise = (el, _opts) => {
+  const widths = [];
+  $(el).find(".masonry-item").each((_i, item) => {
     widths.push($(item).data("masonry-width") || .2);
   });
 
@@ -143,17 +135,17 @@ const normalise = (el, opts) => {
     return;
   }
 
-  let total = widths.reduce((c, p) => c + p);
+  const total = widths.reduce((c, p) => c + p);
 
   if (total < 100) {
-    let missing = 100 - total;
+    const missing = 100 - total;
     $(el).find(".masonry-item").last().data(
       "masonry-width",
       widths[widths.length - 1] + missing,
     );
   }
 
-  let excess = total - 100;
+  const excess = total - 100;
   $(el).find(".masonry-item").last().data(
     "masonry-width",
     widths[widths.length - 1] - excess,
