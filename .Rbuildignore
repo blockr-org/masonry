@@ -8,3 +8,4 @@
 ^test\.R$
 ^LICENSE\.md$
 ^makefile$
+^\.eslintrc\.js$
