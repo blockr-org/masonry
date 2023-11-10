@@ -2,6 +2,6 @@ handlerRaw <- function(data, ...) {
   return(data)
 }
 
-.onAttach <- function(...) {
+.onLoad <- function(...) {
   shiny::registerInputHandler("force.raw", handlerRaw, force = TRUE)
 }
