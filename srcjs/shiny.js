@@ -4,8 +4,7 @@ import { identifier } from "./id.js";
 export const addRow = (opts) => {
   opts.id = identifier();
 
-  const row =
-    `<div id="${opts.id}" class='masonry-row d-flex ${opts.classes}'></div>`;
+  const row = `<div id="${opts.id}" class='masonry-row d-flex ${opts.classes}'></div>`;
 
   const $target = $(`${opts.target}`).find(".masonry-grid-content");
 
@@ -17,25 +16,24 @@ export const addRow = (opts) => {
     $target.prepend(row);
   }
 
-  Shiny.renderDependenciesAsync(opts.content.deps)
-    .then(() => {
-      Shiny.renderContentAsync($(`#${opts.id}`), opts.content.html)
-        .then(() => {
-          const gridOpts = getGrid(opts.target);
-          $(`${opts.target}`).masonry(gridOpts);
+  window.Shiny.renderDependenciesAsync(opts.content.deps).then(() => {
+    window.Shiny.renderContentAsync($(`#${opts.id}`), opts.content.html).then(
+      () => {
+        const gridOpts = getGrid(opts.target);
+        $(`${opts.target}`).masonry(gridOpts);
 
-          const event = new CustomEvent("masonry:added-row", {
-            detail: opts.id,
-          });
-          document.dispatchEvent(event);
+        const event = new CustomEvent("masonry:added-row", {
+          detail: opts.id,
         });
-    });
+        document.dispatchEvent(event);
+      },
+    );
+  });
 };
 
 export const addItem = (opts) => {
   opts.id = identifier();
-  const row =
-    `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
+  const row = `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
 
   let $target;
   if (!opts.row_id) {
@@ -56,19 +54,19 @@ export const addItem = (opts) => {
     $target.prepend(row);
   }
 
-  Shiny.renderDependenciesAsync(opts.item.deps)
-    .then(() => {
-      Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html)
-        .then(() => {
-          const gridOpts = getGrid(opts.target);
-          $(`${opts.target}`).masonry(gridOpts);
+  window.Shiny.renderDependenciesAsync(opts.item.deps).then(() => {
+    window.Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html).then(
+      () => {
+        const gridOpts = getGrid(opts.target);
+        $(`${opts.target}`).masonry(gridOpts);
 
-          const event = new CustomEvent("masonry:added-item", {
-            detail: opts.id,
-          });
-          document.dispatchEvent(event);
+        const event = new CustomEvent("masonry:added-item", {
+          detail: opts.id,
         });
-    });
+        document.dispatchEvent(event);
+      },
+    );
+  });
 };
 
 export const removeItem = (opts) => {
@@ -91,19 +89,18 @@ export const removeRow = (opts) => {
     .remove();
 };
 
-const masonryBinding = new Shiny.OutputBinding();
+const masonryBinding = new window.Shiny.OutputBinding();
 
 $.extend(masonryBinding, {
   find: function (scope) {
     return $(scope).find(".masonry-grid-shiny");
   },
   renderValue: function (el, data) {
-    Shiny.renderContentAsync(el, data.content)
-      .then(() => {
-        $(el).masonry(data.options);
-      });
+    window.Shiny.renderContentAsync(el, data.content).then(() => {
+      $(el).masonry(data.options);
+    });
   },
 });
 
 // register
-Shiny.outputBindings.register(masonryBinding, "masonry.masonry");
+window.Shiny.outputBindings.register(masonryBinding, "masonry.masonry");
