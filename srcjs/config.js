@@ -10,7 +10,7 @@ export const getConfig = (opts) => {
       $(row)
         .find(".masonry-item")
         .each((i, item) => {
-          const first = [];
+          let first = [];
 
           $(item)
             .children()
@@ -79,8 +79,6 @@ export const restoreConfig = (opts) => {
 };
 
 const rearrangeGrid = (opts) => {
-  let items = [];
-
   opts.config.grid.map((row, rowIndex) => {
     const existingRowId = $(`#${opts.target}`)
       .find(`.masonry-row:eq(${rowIndex})`)

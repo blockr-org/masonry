@@ -12,9 +12,11 @@ export const masonry = (el, opts) => {
 };
 
 const listen = (el, _opts) => {
-  $(el).find(".masonry-item").on("mouseup", (event) => {
-    $(event.target).trigger("resize");
-  });
+  $(el)
+    .find(".masonry-item")
+    .on("mouseup", (event) => {
+      $(event.target).trigger("resize");
+    });
 };
 
 const masonMains = (el, opts) => {
@@ -23,9 +25,11 @@ const masonMains = (el, opts) => {
     return;
   }
 
-  $(el).find(".masonry-grid").each((_i, m) => {
-    masonMain(m, opts);
-  });
+  $(el)
+    .find(".masonry-grid")
+    .each((_i, m) => {
+      masonMain(m, opts);
+    });
 };
 
 const masonMain = (el, opts) => {
@@ -43,9 +47,11 @@ const masonMain = (el, opts) => {
 };
 
 const masonRows = (el, opts) => {
-  $(el).find(".masonry-row").each((_i, row) => {
-    masonRow(row, opts);
-  });
+  $(el)
+    .find(".masonry-row")
+    .each((_i, row) => {
+      masonRow(row, opts);
+    });
 };
 
 const masonRow = (el, opts) => {
@@ -67,9 +73,11 @@ const masonRow = (el, opts) => {
 };
 
 const masonItems = (el, opts) => {
-  $(el).find(".masonry-item").each((_i, item) => {
-    masonItem(item, opts);
-  });
+  $(el)
+    .find(".masonry-item")
+    .each((_i, item) => {
+      masonItem(item, opts);
+    });
 };
 
 const masonItem = (el, opts) => {
@@ -127,9 +135,11 @@ const sortableRows = (el, _opts) => {
 
 const normalise = (el, _opts) => {
   const widths = [];
-  $(el).find(".masonry-item").each((_i, item) => {
-    widths.push($(item).data("masonry-width") || .2);
-  });
+  $(el)
+    .find(".masonry-item")
+    .each((_i, item) => {
+      widths.push($(item).data("masonry-width") || 0.2);
+    });
 
   if (widths.length == 0) {
     return;
@@ -139,15 +149,15 @@ const normalise = (el, _opts) => {
 
   if (total < 100) {
     const missing = 100 - total;
-    $(el).find(".masonry-item").last().data(
-      "masonry-width",
-      widths[widths.length - 1] + missing,
-    );
+    $(el)
+      .find(".masonry-item")
+      .last()
+      .data("masonry-width", widths[widths.length - 1] + missing);
   }
 
   const excess = total - 100;
-  $(el).find(".masonry-item").last().data(
-    "masonry-width",
-    widths[widths.length - 1] - excess,
-  );
+  $(el)
+    .find(".masonry-item")
+    .last()
+    .data("masonry-width", widths[widths.length - 1] - excess);
 };
