@@ -32,7 +32,7 @@ masonryGrid(
     masonryItem(card(h1("Yet another card"))),
     masonryItem(card(p("A paragraph")))
   ),
-  styles = list(margin = ".5rem")
+  styles = list(items = list(margin = ".5rem"))
 )
 ```
 
@@ -98,7 +98,7 @@ server <- \(input, output, session) {
         masonryItem(card(h1("A card"))),
         masonryItem(card(h2("Paragraph"), div(p("A paragraph here."))))
       ),
-      styles = list(margin = ".5rem")
+      styles = list(items = list(margin = ".5rem"))
     )
   })
 
@@ -177,7 +177,7 @@ ui <- fluidPage(
       masonryItem(card(h1("A card"))),
       masonryItem(card(h2("Paragraph"), div(p("A paragraph here."))))
     ),
-    styles = list(margin = ".5rem")
+    styles = list(items = list(margin = ".5rem"))
   )
 )
 
