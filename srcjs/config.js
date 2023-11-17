@@ -51,7 +51,7 @@ export const getConfig = (opts) => {
     grid: rows,
   };
 
-  Shiny.setInputValue(`${opts.target}_config:force.raw`, config);
+  window.Shiny.setInputValue(`${opts.target}_config:force.raw`, config);
 };
 
 const asPercentage = (x, total) => {

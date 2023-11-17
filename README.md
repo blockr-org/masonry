@@ -32,7 +32,7 @@ masonryGrid(
     masonryItem(card(h1("Yet another card"))),
     masonryItem(card(p("A paragraph")))
   ),
-  options = list(margin = ".5rem")
+  styles = list(margin = ".5rem")
 )
 ```
 
@@ -98,14 +98,14 @@ server <- \(input, output, session) {
         masonryItem(card(h1("A card"))),
         masonryItem(card(h2("Paragraph"), div(p("A paragraph here."))))
       ),
-      options = list(margin = ".5rem")
+      styles = list(margin = ".5rem")
     )
   })
 
   output$base <- renderPlot(plot(runif(10))) 
 }
 
-shinyApp(ui, server, options = list(port = 3000L))
+shinyApp(ui, server)
 ```
 
 ![](inst/images/basic.png)
@@ -177,7 +177,7 @@ ui <- fluidPage(
       masonryItem(card(h1("A card"))),
       masonryItem(card(h2("Paragraph"), div(p("A paragraph here."))))
     ),
-    options = list(margin = ".5rem")
+    styles = list(margin = ".5rem")
   )
 )
 
@@ -215,7 +215,7 @@ server <- \(input, output, session) {
   })
 }
 
-shinyApp(ui, server, options = list(port = 3000L))
+shinyApp(ui, server)
 ```
 
 ![](inst/images/full.png)
