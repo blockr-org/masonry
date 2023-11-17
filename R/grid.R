@@ -40,7 +40,7 @@ masonryGrid <- \(..., styles = list(row = list("min-height" = "5rem")), classes 
 #' @export
 masonryRow <- \(..., classes = ""){
   div(
-    class = sprintf("masonry-row d-flex %s", classes),
+    class = sprintf("masonry-row position-relative d-flex %s", classes),
     ...
   )
 }
