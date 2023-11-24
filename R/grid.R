@@ -12,7 +12,12 @@
 #' @importFrom jsonlite toJSON
 #' 
 #' @export
-masonryGrid <- \(..., styles = list(row = list("min-height" = "5rem")), classes = "", id = NULL){
+masonryGrid <- \( # nolint
+  ..., 
+  styles = list(row = list("min-height" = "5rem")), 
+  classes = "", 
+  id = NULL
+){
   options <- styles |>
     as.list() |>
     jsonlite::toJSON(auto_unbox = TRUE) |>
@@ -38,7 +43,10 @@ masonryGrid <- \(..., styles = list(row = list("min-height" = "5rem")), classes 
 #' @param classes Any additional classes.
 #' 
 #' @export
-masonryRow <- \(..., classes = ""){
+masonryRow <- \( # nolint
+  ..., 
+  classes = ""
+){
   div(
     class = sprintf("masonry-row position-relative d-flex %s", classes),
     ...
@@ -54,7 +62,11 @@ masonryRow <- \(..., classes = ""){
 #' @param classes Any additional classes.
 #' 
 #' @export
-masonryItem <- \(..., width = .2, classes = ""){
+masonryItem <- \( # nolint
+  ..., 
+  width = .2, 
+  classes = ""
+){
   if(!is.null(width) && width < 1)
     width <- round(width * 100L)
 

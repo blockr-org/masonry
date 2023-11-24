@@ -9,3 +9,4 @@
 ^LICENSE\.md$
 ^makefile$
 ^\.eslintrc\.js$
+^\.lintr$

@@ -70,9 +70,9 @@ masonry_add_row <- function(
 #' @export
 masonry_add_item <- function(
   target, 
+  item,
   row_index = NULL,
   row_id = NULL,
-  item,
   position = c("start", "end"), 
   classes = "",
   session = shiny::getDefaultReactiveDomain()
