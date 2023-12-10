@@ -1,6 +1,6 @@
 import "shiny";
 import { masonry } from "./masonry.js";
-import { addItem, addRow, removeItem, removeRow } from "./shiny.js";
+import { addItem, addRow, removeItem, removeRow, run } from "./shiny.js";
 import { getConfig, restoreConfig } from "./config.js";
 
 jQuery.fn.extend({
@@ -15,6 +15,4 @@ Shiny.addCustomMessageHandler("masonry-remove-item", removeItem);
 Shiny.addCustomMessageHandler("masonry-remove-row", removeRow);
 Shiny.addCustomMessageHandler("masonry-get-config", getConfig);
 Shiny.addCustomMessageHandler("masonry-restore-config", restoreConfig);
-Shiny.addCustomMessageHandler("masonry-run", (msg) => {
-  $(msg.target).masonry();
-});
+Shiny.addCustomMessageHandler("masonry-run", run);

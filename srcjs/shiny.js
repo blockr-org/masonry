@@ -89,6 +89,12 @@ export const removeRow = (opts) => {
     .remove();
 };
 
+export const run = (opts) => {
+  setTimeout(() => {
+    $(`${opts.target}`).masonry();
+  }, opts.delay);
+};
+
 const masonryBinding = new window.Shiny.OutputBinding();
 
 $.extend(masonryBinding, {

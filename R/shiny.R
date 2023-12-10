@@ -4,10 +4,12 @@
 #' 
 #' @param target `id` of target [masonryGrid()].
 #' @param session A valid shiny session.
+#' @param delay Delay in milliseconds.
 #' 
 #' @export
 mason <- function(
   target, 
+  delay = 0L,
   session = shiny::getDefaultReactiveDomain()
 ){
   if(missing(target))
@@ -16,6 +18,7 @@ mason <- function(
   session$sendCustomMessage(
     "masonry-run",
     list(
+      delay = delay,
       target = target
     )
   )

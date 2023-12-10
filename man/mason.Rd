@@ -4,10 +4,12 @@
 \alias{mason}
 \title{Mason}
 \usage{
-mason(target, session = shiny::getDefaultReactiveDomain())
+mason(target, delay = 0L, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{target}{\code{id} of target \code{\link[=masonryGrid]{masonryGrid()}}.}
+
+\item{delay}{Delay in milliseconds.}
 
 \item{session}{A valid shiny session.}
 }

@@ -5,7 +5,7 @@
 #' @importFrom htmltools htmlDependency
 #' 
 #' @export
-masonryDependencies <- function() {
+masonryDependencies <- function() { # nolint
   list(
     htmlwidgets::getDependency("sortable"),
     htmlDependency(
@@ -18,4 +18,3 @@ masonryDependencies <- function() {
     )
   )
 }
-
