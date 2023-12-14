@@ -81,7 +81,7 @@ ui <- fluidPage(
   theme = bslib::bs_theme(version = 5L),
   h1("Masonry"),
   p("You can resize and rearrange the cards below"),
-  outputMasonry("masonry")
+  masonryOutput("masonry")
 )
 
 server <- \(input, output, session) {
