@@ -1,3 +1,4 @@
+import { getConfig } from "./config.js";
 import { identifier } from "./id.js";
 import { setGrid } from "./storage.js";
 
@@ -44,6 +45,13 @@ const masonMain = (el, opts) => {
   // sortable between rows
   sortableItems(el, opts);
   sortableRows($(el).find(".masonry-grid-content"), opts);
+
+  if ($(el).data("send")) {
+    $(el).off("change resize");
+    $(el).on("change resize", () => {
+      getConfig({ target: `${id}` });
+    });
+  }
 };
 
 const masonRows = (el, opts) => {

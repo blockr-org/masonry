@@ -8,7 +8,8 @@ masonryGrid(
   ...,
   styles = list(row = list(`min-height` = "5rem")),
   classes = "",
-  id = NULL
+  id = NULL,
+  send_on_change = FALSE
 )
 }
 \arguments{
@@ -20,6 +21,8 @@ e.g.: \code{list(items = list(margin = ".5rem"))}.}
 \item{classes}{Any additional classes.}
 
 \item{id}{ID of grid.}
+
+\item{send_on_change}{Whether to send config on change.}
 }
 \description{
 Masonry row

@@ -7,6 +7,7 @@
 #' @param styles [list()] of options for `items` and `rows`, 
 #'  e.g.: `list(items = list(margin = ".5rem"))`.
 #' @param classes Any additional classes.
+#' @param send_on_change Whether to send config on change.
 #' 
 #' @importFrom htmltools div tags HTML
 #' @importFrom jsonlite toJSON
@@ -16,7 +17,8 @@ masonryGrid <- \( # nolint
   ..., 
   styles = list(row = list("min-height" = "5rem")), 
   classes = "", 
-  id = NULL
+  id = NULL,
+  send_on_change = FALSE
 ){
   options <- styles |>
     as.list() |>
@@ -26,6 +28,7 @@ masonryGrid <- \( # nolint
   div(
     id = id,
     `data-styles` = options,
+    `data-send` = tolower(send_on_change),
     class = sprintf("masonry-grid %s", classes),
     div(
       class = "masonry-grid-content",
