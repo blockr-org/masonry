@@ -5,6 +5,7 @@
 #' @param target `id` of target [masonryGrid()].
 #' @param session A valid shiny session.
 #' @param delay Delay in milliseconds.
+#' @param send_on_change Whether to send config on change.
 #' 
 #' @export
 mason <- function(
