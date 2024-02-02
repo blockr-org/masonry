@@ -9,6 +9,7 @@ masonry_add_row(
   content = "",
   position = c("bottom", "top"),
   classes = "",
+  id = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -21,6 +22,8 @@ masonry_add_row(
 or the \code{bottom}.}
 
 \item{classes}{Additional classes to add to the row.}
+
+\item{id}{Row id.}
 
 \item{session}{A valid shiny session.}
 }

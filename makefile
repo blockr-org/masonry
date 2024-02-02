@@ -10,5 +10,5 @@ install: check
 bundle: 
 	Rscript -e "packer::bundle()"
 
-run: document
+dev: document
 	Rscript test.R

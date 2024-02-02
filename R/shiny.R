@@ -5,7 +5,6 @@
 #' @param target `id` of target [masonryGrid()].
 #' @param session A valid shiny session.
 #' @param delay Delay in milliseconds.
-#' @param send_on_change Whether to send config on change.
 #' 
 #' @export
 mason <- function(
@@ -34,6 +33,7 @@ mason <- function(
 #' @param position Whether to add the new row at the `top`
 #'  or the `bottom`.
 #' @param content Initial content of the row.
+#' @param id Row id.
 #' 
 #' @export
 masonry_add_row <- function(
@@ -41,6 +41,7 @@ masonry_add_row <- function(
   content = "",
   position = c("bottom", "top"), 
   classes = "",
+  id = NULL,
   session = shiny::getDefaultReactiveDomain()
 ){
   if(missing(target))
@@ -51,8 +52,9 @@ masonry_add_row <- function(
   session$sendCustomMessage(
     "masonry-add-row",
     list(
+      id = id,
       target = target,
-      classes = classes,
+      classes = paste(classes, collapse = " "),
       position = position,
       content = process_deps(content, session)
     )
@@ -236,7 +238,7 @@ masonry_restore_config <- function(
 #' @param quoted Whether to quote the expression.
 #' 
 #' @export
-masonryOutput <- function(id, styles = list(), classes = ""){
+masonryOutput <- function(id, styles = list(), classes = ""){ # nolint
   if(missing(id))
     stop("missing id")
 
@@ -254,7 +256,7 @@ masonryOutput <- function(id, styles = list(), classes = ""){
 
 #' @rdname masonryOutput
 #' @export
-renderMasonry <- function(expr, styles = list(), env = parent.frame(), quoted = FALSE) {
+renderMasonry <- function(expr, styles = list(), env = parent.frame(), quoted = FALSE) { # nolint
   # Convert the expression + environment into a function
   func <- shiny::exprToFunction(expr, env, quoted)
 

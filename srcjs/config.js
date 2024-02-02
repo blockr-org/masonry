@@ -1,10 +1,10 @@
-import { getGrid } from "./storage.js";
+import { getGrid, setGrid } from "./storage.js";
 
 export const getConfig = (opts) => {
   let rows = [];
   $(`#${opts.target}`)
     .find(".masonry-row")
-    .each((i, row) => {
+    .each((_i, row) => {
       let items = [];
 
       $(row)
@@ -31,7 +31,7 @@ export const getConfig = (opts) => {
           items.push(opt);
         });
 
-      let total = items.map((item) => item.width).reduce((c, p) => c + p);
+      let total = items.map((item) => item.width).reduce((c, p) => c + p, 0);
 
       items = items.map((item) => {
         item.percentage = asPercentage(item.width, total);
@@ -63,6 +63,7 @@ const getDimensions = (el) => {
 };
 
 export const restoreConfig = (opts) => {
+  setGrid(opts.target, opts.config);
   rearrangeGrid(opts);
 
   // resize widths

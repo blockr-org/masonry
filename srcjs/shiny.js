@@ -2,7 +2,7 @@ import { getGrid } from "./storage.js";
 import { identifier } from "./id.js";
 
 export const addRow = (opts) => {
-  opts.id = identifier();
+  if (!opts.id) opts.id = identifier();
 
   const row = `<div id="${opts.id}" class='masonry-row d-flex ${opts.classes}'></div>`;
 

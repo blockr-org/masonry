@@ -123,7 +123,7 @@ const sortableItems = (el, opts) => {
     sortOpts.group = opts.group;
   }
 
-  new Sortable(el, sortOpts);
+  new window.Sortable(el, sortOpts);
 };
 
 const sortableRows = (el, _opts) => {
@@ -138,7 +138,7 @@ const sortableRows = (el, _opts) => {
     },
   };
 
-  new Sortable(el[0], sortOpts);
+  new window.Sortable(el[0], sortOpts);
 };
 
 const normalise = (el, _opts) => {
@@ -153,7 +153,7 @@ const normalise = (el, _opts) => {
     return;
   }
 
-  const total = widths.reduce((c, p) => c + p);
+  const total = widths.reduce((c, p) => c + p, 0);
 
   if (total < 100) {
     const missing = 100 - total;
