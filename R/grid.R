@@ -18,7 +18,7 @@ masonryGrid <- \( # nolint
   styles = list(row = list("min-height" = "5rem")), 
   classes = "", 
   id = NULL,
-  send_on_change = FALSE
+  send_on_change = TRUE
 ){
   options <- styles |>
     as.list() |>
