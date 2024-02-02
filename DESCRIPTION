@@ -20,3 +20,5 @@ Imports:
   jsonlite,
   htmltools,
   htmlwidgets
+Suggests:
+  sortable
