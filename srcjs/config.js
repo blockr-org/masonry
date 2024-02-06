@@ -81,6 +81,8 @@ export const restoreConfig = (opts) => {
             $(item).trigger("resize");
           });
       });
+
+    getGrid(`#${opts.target}`);
   }, opts.delay || 0);
 };
 
