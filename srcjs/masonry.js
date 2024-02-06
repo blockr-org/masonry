@@ -49,7 +49,7 @@ const masonMain = (el, opts) => {
   if ($(el).data("send")) {
     $(el).off("change resize");
     $(el).on("change resize", () => {
-      getConfig({ target: `${id}` });
+      getConfig({ target: id });
     });
   }
 };
@@ -116,6 +116,8 @@ const sortableItems = (el, opts) => {
     draggable: ".masonry-item",
     onEnd: (event) => {
       $(event.item).closest(".masonry-row").trigger("resize");
+      const id = $(event.item).closest(".masonry-grid").attr("id");
+      getConfig({ target: id });
     },
   };
 
@@ -135,6 +137,8 @@ const sortableRows = (el, _opts) => {
     draggable: ".masonry-row",
     onEnd: (event) => {
       $(event.item).trigger("resize");
+      const id = $(event.item).closest(".masonry-grid").attr("id");
+      getConfig({ target: id });
     },
   };
 
