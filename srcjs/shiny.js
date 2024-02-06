@@ -1,5 +1,6 @@
 import { getGrid } from "./storage.js";
 import { identifier } from "./id.js";
+import { getConfig } from "./config.js";
 
 export const addRow = (opts) => {
   if (!opts.id) opts.id = identifier();
@@ -26,6 +27,7 @@ export const addRow = (opts) => {
           detail: opts.id,
         });
         document.dispatchEvent(event);
+        getConfig({ target: opts.target.replace("#", "") });
       },
     );
   });
@@ -64,6 +66,7 @@ export const addItem = (opts) => {
           detail: opts.id,
         });
         document.dispatchEvent(event);
+        getConfig({ target: opts.target.replace("#", "") });
       },
     );
   });
@@ -75,18 +78,26 @@ export const removeItem = (opts) => {
     return;
   }
 
+  const id = $(`${opts.target}`).closest(".masonry-grid").attr("id");
+
   $(`${opts.target}`)
     .find(".masonry-grid-content")
     .find(`.masonry-row:eq(${opts.row_index})`)
     .find(`.masonry-item:eq(${opts.item_index})`)
     .remove();
+
+  getConfig({ target: id });
 };
 
 export const removeRow = (opts) => {
+  const id = $(`${opts.target}`).closest(".masonry-grid").attr("id");
+
   $(`${opts.target}`)
     .find(".masonry-grid-content")
     .find(`.masonry-row:eq(${opts.row_index})`)
     .remove();
+
+  getConfig({ target: id });
 };
 
 export const run = (opts) => {
