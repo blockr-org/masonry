@@ -97,15 +97,11 @@ export const restoreConfig = (opts) => {
 
 const rearrangeGrid = (opts) => {
   opts.config.grid.map((row, rowIndex) => {
-    const existingRowId = $(`#${opts.target}`)
-      .find(`.masonry-row:eq(${rowIndex})`)
-      .attr("id");
+    $(`#${opts.target}`).find(`.masonry-row:eq(${rowIndex})`).attr("id");
     const toRowId = row.id;
 
     row.items.map((item, itemIndex) => {
-      const existingItemId = $(`#${opts.target}`)
-        .find(`.masonry-item:eq(${itemIndex})`)
-        .attr("id");
+      $(`#${opts.target}`).find(`.masonry-item:eq(${itemIndex})`).attr("id");
       const toItemId = item.id;
 
       $(`#${toItemId}`).appendTo(`#${toRowId}`);
