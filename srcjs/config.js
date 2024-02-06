@@ -1,5 +1,11 @@
 import { getGrid, setGrid } from "./storage.js";
 
+export const getConfigShiny = (opts) => {
+  setTimeout(() => {
+    getConfig(opts);
+  }, opts.delay || 0);
+};
+
 export const getConfig = (opts) => {
   let rows = [];
   $(`#${opts.target}`)
@@ -15,7 +21,6 @@ export const getConfig = (opts) => {
           $(item)
             .children()
             .each((_i, el) => {
-              if (!$(el).is(":visible")) return;
               first.push(el);
             });
 
@@ -59,7 +64,11 @@ const asPercentage = (x, total) => {
 };
 
 const getDimensions = (el) => {
-  return $(el).width();
+  let perc = $(el).css("width").replace("%", "");
+
+  if (perc) return parseInt(perc);
+
+  return $(el).width() || 0;
 };
 
 export const restoreConfig = (opts) => {

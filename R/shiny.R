@@ -190,16 +190,19 @@ masonry_remove_item <- function(
 #' 
 #' @param id `id` of target [masonryGrid()].
 #' @param session A valid shiny session.
+#' @param delay Delay in milliseconds.
 #' 
 #' @export
 masonry_get_config <- function(
   id,
-  session = shiny::getDefaultReactiveDomain()
+  session = shiny::getDefaultReactiveDomain(),
+  delay = 0
 ) {
   session$sendCustomMessage(
     "masonry-get-config",
     list(
-      target = id
+      target = id,
+      delay = delay
     )
   )
 }

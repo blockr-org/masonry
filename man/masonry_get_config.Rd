@@ -4,12 +4,14 @@
 \alias{masonry_get_config}
 \title{Get config}
 \usage{
-masonry_get_config(id, session = shiny::getDefaultReactiveDomain())
+masonry_get_config(id, session = shiny::getDefaultReactiveDomain(), delay = 0)
 }
 \arguments{
 \item{id}{\code{id} of target \code{\link[=masonryGrid]{masonryGrid()}}.}
 
 \item{session}{A valid shiny session.}
+
+\item{delay}{Delay in milliseconds.}
 }
 \description{
 Get config \code{\link[=masonryGrid]{masonryGrid()}}.
