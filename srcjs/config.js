@@ -64,7 +64,7 @@ const getDimensions = (el) => {
 
 export const restoreConfig = (opts) => {
   setTimeout(() => {
-    setGrid(opts.target, opts.config);
+    setGrid(opts.target, opts.config?.opts);
     rearrangeGrid(opts);
 
     // resize widths
