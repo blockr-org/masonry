@@ -63,20 +63,25 @@ const getDimensions = (el) => {
 };
 
 export const restoreConfig = (opts) => {
-  setGrid(opts.target, opts.config);
-  rearrangeGrid(opts);
+  setTimeout(() => {
+    setGrid(opts.target, opts.config);
+    rearrangeGrid(opts);
 
-  // resize widths
-  $(`#${opts.target}`)
-    .find(".masonry-row")
-    .each((ri, row) => {
-      $(row)
-        .find(".masonry-item")
-        .each((ii, item) => {
-          $(item).css("width", `${opts.config.grid[ri].items[ii].percentage}%`);
-          $(item).trigger("resize");
-        });
-    });
+    // resize widths
+    $(`#${opts.target}`)
+      .find(".masonry-row")
+      .each((ri, row) => {
+        $(row)
+          .find(".masonry-item")
+          .each((ii, item) => {
+            $(item).css(
+              "width",
+              `${opts.config.grid[ri].items[ii].percentage}%`,
+            );
+            $(item).trigger("resize");
+          });
+      });
+  }, opts.delay || 0);
 };
 
 const rearrangeGrid = (opts) => {

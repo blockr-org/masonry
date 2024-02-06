@@ -4,7 +4,12 @@
 \alias{masonry_restore_config}
 \title{Restore config}
 \usage{
-masonry_restore_config(id, config, session = shiny::getDefaultReactiveDomain())
+masonry_restore_config(
+  id,
+  config,
+  session = shiny::getDefaultReactiveDomain(),
+  delay = 0
+)
 }
 \arguments{
 \item{id}{\code{id} of target \code{\link[=masonryGrid]{masonryGrid()}}.}
@@ -12,6 +17,8 @@ masonry_restore_config(id, config, session = shiny::getDefaultReactiveDomain())
 \item{config}{Config, as obtained via \code{\link[=masonry_get_config]{masonry_get_config()}}.}
 
 \item{session}{A valid shiny session.}
+
+\item{delay}{Delay in milliseconds.}
 }
 \description{
 Restore config \code{\link[=masonryGrid]{masonryGrid()}}.

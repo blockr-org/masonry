@@ -211,18 +211,21 @@ masonry_get_config <- function(
 #' @param id `id` of target [masonryGrid()].
 #' @param config Config, as obtained via [masonry_get_config()].
 #' @param session A valid shiny session.
+#' @param delay Delay in milliseconds.
 #' 
 #' @export
 masonry_restore_config <- function(
   id,
   config,
-  session = shiny::getDefaultReactiveDomain()
+  session = shiny::getDefaultReactiveDomain(),
+  delay = 0
 ) {
   session$sendCustomMessage(
     "masonry-restore-config",
     list(
       target = id,
-      config = config
+      config = config,
+      delay = delay
     )
   )
 }
