@@ -59,11 +59,11 @@ export const getConfig = (opts) => {
   window.Shiny.setInputValue(`${opts.target}_config:force.raw`, config);
 };
 
-const asPercentage = (x, total) => {
+export const asPercentage = (x, total) => {
   return Math.round((x / total) * 100);
 };
 
-const getDimensions = (el) => {
+export const getDimensions = (el) => {
   let perc = $(el).css("width").replace("%", "");
 
   if (perc) return parseInt(perc);

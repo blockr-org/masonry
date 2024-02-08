@@ -1,4 +1,4 @@
-import { getConfig } from "./config.js";
+import { asPercentage, getConfig, getDimensions } from "./config.js";
 import { identifier } from "./id.js";
 import { setGrid } from "./storage.js";
 
@@ -86,6 +86,7 @@ const masonItems = (el, opts) => {
     .each((_i, item) => {
       masonItem(item, opts);
     });
+  enforceFullWidth(el);
 };
 
 const masonItem = (el, opts) => {
@@ -97,6 +98,23 @@ const masonItem = (el, opts) => {
 
   const id = identifier(20);
   $(el).attr("id", id);
+};
+
+const enforceFullWidth = (el) => {
+  console.log(el);
+  let widths = [];
+  $(el)
+    .find(".masonry-item")
+    .each((_i, el) => widths.push(getDimensions(el)));
+
+  const total = widths.reduce((c, p) => c + p, 0);
+
+  $(el)
+    .find(".masonry-item")
+    .each((_i, el) => {
+      $(el).css("width", asPercentage(getDimensions(el), total) + "%");
+      $(el).trigger("resize");
+    });
 };
 
 const sortableItems = (el, opts) => {
