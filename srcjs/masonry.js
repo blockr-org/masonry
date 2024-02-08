@@ -101,7 +101,6 @@ const masonItem = (el, opts) => {
 };
 
 const enforceFullWidth = (el) => {
-  console.log(el);
   let widths = [];
   $(el)
     .find(".masonry-item")
