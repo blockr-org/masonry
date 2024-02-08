@@ -182,6 +182,8 @@ ui <- fluidPage(
 )
 
 server <- \(input, output, session) {
+  observe(mason())
+
   output$base <- renderPlot(plot(runif(10))) 
 
   observeEvent(input$addRow, {

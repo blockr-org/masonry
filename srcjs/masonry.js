@@ -93,6 +93,7 @@ const masonItem = (el, opts) => {
     for (const key in opts.items) {
       $(el).css(key, opts.items[key]);
     }
+    return;
   }
 
   let w = $(el).data("masonry-width");
