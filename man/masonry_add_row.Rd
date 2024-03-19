@@ -10,7 +10,8 @@ masonry_add_row(
   position = c("bottom", "top"),
   classes = "",
   id = NULL,
-  session = shiny::getDefaultReactiveDomain()
+  session = shiny::getDefaultReactiveDomain(),
+  event_id = NULL
 )
 }
 \arguments{
@@ -26,6 +27,8 @@ or the \code{bottom}.}
 \item{id}{Row id.}
 
 \item{session}{A valid shiny session.}
+
+\item{event_id}{id of event to trigger (\code{input$event_id}) when the item is rendered.}
 }
 \description{
 Add a row to \code{\link[=masonryGrid]{masonryGrid()}}.

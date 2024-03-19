@@ -28,10 +28,7 @@ export const addRow = (opts) => {
         });
         document.dispatchEvent(event);
         getConfig({ target: opts.target.replace("#", "") });
-        window.Shiny.setInputValue(
-          `${opts.target.replace("#", "")}_added_row:force.raw`,
-          opts,
-        );
+        if (opts.event_id) window.Shiny.setInputValue(opts.event_id, opts);
       },
     );
   });
@@ -72,10 +69,7 @@ export const addItem = (opts) => {
           });
           document.dispatchEvent(event);
           getConfig({ target: opts.target.replace("#", "") });
-          window.Shiny.setInputValue(
-            `${opts.target.replace("#", "")}_added_item:force.raw`,
-            opts,
-          );
+          if (opts.event_id) window.Shiny.setInputValue(opts.event_id, opts);
         },
       );
     });

@@ -34,6 +34,7 @@ mason <- function(
 #'  or the `bottom`.
 #' @param content Initial content of the row.
 #' @param id Row id.
+#' @param event_id id of event to trigger (`input$event_id`) when the item is rendered.
 #' 
 #' @export
 masonry_add_row <- function(
@@ -42,7 +43,8 @@ masonry_add_row <- function(
   position = c("bottom", "top"), 
   classes = "",
   id = NULL,
-  session = shiny::getDefaultReactiveDomain()
+  session = shiny::getDefaultReactiveDomain(),
+  event_id = NULL
 ){
   if(missing(target))
     stop("Missing `target`")
@@ -56,7 +58,8 @@ masonry_add_row <- function(
       target = target,
       classes = paste(classes, collapse = " "),
       position = position,
-      content = process_deps(content, session)
+      content = process_deps(content, session),
+      event_id = event_id
     )
   )
 }
@@ -73,6 +76,7 @@ masonry_add_row <- function(
 #' @param position Whether to add the new row at the `start`
 #'  or the `end`.
 #' @param delay Delay in milliseconds.
+#' @param event_id id of event to trigger (`input$event_id`) when the item is rendered.
 #' 
 #' @export
 masonry_add_item <- function(
@@ -83,7 +87,8 @@ masonry_add_item <- function(
   position = c("start", "end"), 
   classes = "",
   session = shiny::getDefaultReactiveDomain(),
-  delay = 0
+  delay = 0,
+  event_id = NULL
 ){
   if(missing(target))
     stop("Missing `target`")
@@ -108,7 +113,8 @@ masonry_add_item <- function(
       row_index = row_index - 1L,
       row_id = row_id,
       item = process_deps(item, session),
-      delay = delay
+      delay = delay,
+      event_id = event_id
     )
   )
 }
