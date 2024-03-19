@@ -28,48 +28,58 @@ export const addRow = (opts) => {
         });
         document.dispatchEvent(event);
         getConfig({ target: opts.target.replace("#", "") });
+        window.Shiny.setInputValue(
+          `${opts.target.replace("#", "")}_added_row:force.raw`,
+          opts,
+        );
       },
     );
   });
 };
 
 export const addItem = (opts) => {
-  opts.id = identifier();
-  const row = `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
+  setTimeout(() => {
+    opts.id = identifier();
+    const row = `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
 
-  let $target;
-  if (!opts.row_id) {
-    $target = $(`${opts.target}`)
-      .find(".masonry-grid-content")
-      .find(`.masonry-row:eq(${opts.row_index})`);
-  }
+    let $target;
+    if (!opts.row_id) {
+      $target = $(`${opts.target}`)
+        .find(".masonry-grid-content")
+        .find(`.masonry-row:eq(${opts.row_index})`);
+    }
 
-  if (opts.row_id) {
-    $target = $(`${opts.row_id}`);
-  }
+    if (opts.row_id) {
+      $target = $(`${opts.row_id}`);
+    }
 
-  if (opts.position == "end") {
-    $target.append(row);
-  }
+    if (opts.position == "end") {
+      $target.append(row);
+    }
 
-  if (opts.position == "start") {
-    $target.prepend(row);
-  }
+    if (opts.position == "start") {
+      $target.prepend(row);
+    }
 
-  window.Shiny.renderDependenciesAsync(opts.item.deps).then(() => {
-    window.Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html).then(
-      () => {
-        const gridOpts = getGrid(opts.target);
-        $(`${opts.target}`).masonry(gridOpts);
+    window.Shiny.renderDependenciesAsync(opts.item.deps).then(() => {
+      window.Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html).then(
+        () => {
+          const gridOpts = getGrid(opts.target);
+          $(`${opts.target}`).masonry(gridOpts);
 
-        const event = new CustomEvent("masonry:added-item", {
-          detail: opts.id,
-        });
-        document.dispatchEvent(event);
-        getConfig({ target: opts.target.replace("#", "") });
-      },
-    );
-  });
+          const event = new CustomEvent("masonry:added-item", {
+            detail: opts.id,
+          });
+          document.dispatchEvent(event);
+          getConfig({ target: opts.target.replace("#", "") });
+          window.Shiny.setInputValue(
+            `${opts.target.replace("#", "")}_added_item:force.raw`,
+            opts,
+          );
+        },
+      );
+    });
+  }, opts.delay || 0);
 };
 
 export const removeItem = (opts) => {

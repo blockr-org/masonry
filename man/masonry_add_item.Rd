@@ -11,7 +11,8 @@ masonry_add_item(
   row_id = NULL,
   position = c("start", "end"),
   classes = "",
-  session = shiny::getDefaultReactiveDomain()
+  session = shiny::getDefaultReactiveDomain(),
+  delay = 0
 )
 }
 \arguments{
@@ -27,6 +28,8 @@ or the \code{end}.}
 \item{classes}{Additional classes to add to the row.}
 
 \item{session}{A valid shiny session.}
+
+\item{delay}{Delay in milliseconds.}
 }
 \description{
 Add an item to \code{\link[=masonryRow]{masonryRow()}}.

@@ -15,7 +15,7 @@ export const getConfig = (opts) => {
 
       $(row)
         .find(".masonry-item")
-        .each((i, item) => {
+        .each((_index, item) => {
           let first = [];
 
           $(item)

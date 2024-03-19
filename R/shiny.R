@@ -72,6 +72,7 @@ masonry_add_row <- function(
 #' @param classes Additional classes to add to the row.
 #' @param position Whether to add the new row at the `start`
 #'  or the `end`.
+#' @param delay Delay in milliseconds.
 #' 
 #' @export
 masonry_add_item <- function(
@@ -81,7 +82,8 @@ masonry_add_item <- function(
   row_id = NULL,
   position = c("start", "end"), 
   classes = "",
-  session = shiny::getDefaultReactiveDomain()
+  session = shiny::getDefaultReactiveDomain(),
+  delay = 0
 ){
   if(missing(target))
     stop("Missing `target`")
@@ -105,7 +107,8 @@ masonry_add_item <- function(
       position = position,
       row_index = row_index - 1L,
       row_id = row_id,
-      item = process_deps(item, session)
+      item = process_deps(item, session),
+      delay = delay
     )
   )
 }
