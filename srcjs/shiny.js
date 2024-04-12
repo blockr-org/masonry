@@ -57,18 +57,23 @@ export const addItem = (opts) => {
     $target.prepend(row);
   }
 
-  window.Shiny.renderDependenciesAsync(opts.item.deps).then(() => {
-    $(`#${opts.id}`).html(opts.item.html);
-    const gridOpts = getGrid(opts.target);
-    $(`${opts.target}`).masonry(gridOpts);
+  window.Shiny.renderDependenciesAsync(opts.item.deps)
+    .then(() => {
+      window.Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html)
+        .then(() => {
+          const gridOpts = getGrid(opts.target);
+          $(`${opts.target}`).masonry(gridOpts);
 
-    const event = new CustomEvent("masonry:added-item", {
-      detail: opts.id,
-    });
-    document.dispatchEvent(event);
-    getConfig({ target: opts.target.replace("#", "") });
-    if (opts.event_id) window.Shiny.setInputValue(opts.event_id, opts);
-  });
+          const event = new CustomEvent("masonry:added-item", {
+            detail: opts.id,
+          });
+          document.dispatchEvent(event);
+          getConfig({ target: opts.target.replace("#", "") });
+          if (opts.event_id) window.Shiny.setInputValue(opts.event_id, opts);
+        })
+        .catch((e) => console.error(e));
+    })
+    .catch((e) => console.error(e));
 };
 
 export const removeItem = (opts) => {
