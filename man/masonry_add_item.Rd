@@ -12,7 +12,8 @@ masonry_add_item(
   position = c("start", "end"),
   classes = "",
   session = shiny::getDefaultReactiveDomain(),
-  event_id = NULL
+  event_id = NULL,
+  mason = TRUE
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ or the \code{end}.}
 \item{session}{A valid shiny session.}
 
 \item{event_id}{id of event to trigger (\code{input$event_id}) when the item is rendered.}
+
+\item{mason}{Whether to run masonry after adding the item.}
 }
 \description{
 Add an item to \code{\link[=masonryRow]{masonryRow()}}.

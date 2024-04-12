@@ -61,8 +61,10 @@ export const addItem = (opts) => {
     .then(() => {
       window.Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html)
         .then(() => {
-          //const gridOpts = getGrid(opts.target);
-          //$(`${opts.target}`).masonry(gridOpts);
+          if (opts.mason) {
+            const gridOpts = getGrid(opts.target);
+            $(`${opts.target}`).masonry(gridOpts);
+          }
 
           const event = new CustomEvent("masonry:added-item", {
             detail: opts.id,
