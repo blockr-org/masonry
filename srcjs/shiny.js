@@ -35,49 +35,44 @@ export const addRow = (opts) => {
 };
 
 export const addItem = (opts) => {
-  setTimeout(() => {
-    if (!opts.id) opts.id = identifier();
-    const row = `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
+  if (!opts.id) opts.id = identifier();
+  const row = `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
 
-    let $target;
-    if (!opts.row_id) {
-      $target = $(`${opts.target}`)
-        .find(".masonry-grid-content")
-        .find(`.masonry-row:eq(${opts.row_index})`);
-    }
+  let $target;
+  if (!opts.row_id) {
+    $target = $(`${opts.target}`)
+      .find(".masonry-grid-content")
+      .find(`.masonry-row:eq(${opts.row_index})`);
+  }
 
-    if (opts.row_id) {
-      $target = $(`${opts.row_id}`);
-    }
+  if (opts.row_id) {
+    $target = $(`${opts.row_id}`);
+  }
 
-    if (opts.position == "end") {
-      $target.append(row);
-    }
+  if (opts.position == "end") {
+    $target.append(row);
+  }
 
-    if (opts.position == "start") {
-      $target.prepend(row);
-    }
+  if (opts.position == "start") {
+    $target.prepend(row);
+  }
 
-    console.log("-----");
-    console.log($target);
-    console.log(opts);
-    console.log($(`#${opts.id}`));
-    window.Shiny.renderDependenciesAsync(opts.item.deps).then(() => {
-      window.Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html).then(
-        () => {
-          const gridOpts = getGrid(opts.target);
-          $(`${opts.target}`).masonry(gridOpts);
+  window.Shiny.renderDependenciesAsync(opts.item.deps).then(() => {
+    window.Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html).then(
+      () => {
+        console.log(opts);
+        const gridOpts = getGrid(opts.target);
+        $(`${opts.target}`).masonry(gridOpts);
 
-          const event = new CustomEvent("masonry:added-item", {
-            detail: opts.id,
-          });
-          document.dispatchEvent(event);
-          getConfig({ target: opts.target.replace("#", "") });
-          if (opts.event_id) window.Shiny.setInputValue(opts.event_id, opts);
-        },
-      );
-    });
-  }, opts.delay || 0);
+        const event = new CustomEvent("masonry:added-item", {
+          detail: opts.id,
+        });
+        document.dispatchEvent(event);
+        getConfig({ target: opts.target.replace("#", "") });
+        if (opts.event_id) window.Shiny.setInputValue(opts.event_id, opts);
+      },
+    );
+  });
 };
 
 export const removeItem = (opts) => {

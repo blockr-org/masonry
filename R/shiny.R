@@ -75,7 +75,6 @@ masonry_add_row <- function(
 #' @param classes Additional classes to add to the row.
 #' @param position Whether to add the new row at the `start`
 #'  or the `end`.
-#' @param delay Delay in milliseconds.
 #' @param event_id id of event to trigger (`input$event_id`) when the item is rendered.
 #' 
 #' @export
@@ -87,7 +86,6 @@ masonry_add_item <- function(
   position = c("start", "end"), 
   classes = "",
   session = shiny::getDefaultReactiveDomain(),
-  delay = 0,
   event_id = NULL
 ){
   if(missing(target))
@@ -113,7 +111,6 @@ masonry_add_item <- function(
       row_index = row_index - 1L,
       row_id = row_id,
       item = process_deps(item, session),
-      delay = delay,
       event_id = event_id
     )
   )

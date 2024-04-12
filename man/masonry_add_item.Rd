@@ -12,7 +12,6 @@ masonry_add_item(
   position = c("start", "end"),
   classes = "",
   session = shiny::getDefaultReactiveDomain(),
-  delay = 0,
   event_id = NULL
 )
 }
@@ -29,8 +28,6 @@ or the \code{end}.}
 \item{classes}{Additional classes to add to the row.}
 
 \item{session}{A valid shiny session.}
-
-\item{delay}{Delay in milliseconds.}
 
 \item{event_id}{id of event to trigger (\code{input$event_id}) when the item is rendered.}
 }
