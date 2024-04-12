@@ -36,7 +36,7 @@ export const addRow = (opts) => {
 
 export const addItem = (opts) => {
   setTimeout(() => {
-    opts.id = identifier();
+    if (!opts.id) opts.id = identifier();
     const row = `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
 
     let $target;
@@ -61,6 +61,9 @@ export const addItem = (opts) => {
     window.Shiny.renderDependenciesAsync(opts.item.deps).then(() => {
       window.Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html).then(
         () => {
+          console.log("-----");
+          console.log($target);
+          console.log(opts);
           const gridOpts = getGrid(opts.target);
           $(`${opts.target}`).masonry(gridOpts);
 

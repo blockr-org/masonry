@@ -283,4 +283,3 @@ renderMasonry <- function(expr, styles = list(), env = parent.frame(), quoted = 
     )
   }
 }
-
