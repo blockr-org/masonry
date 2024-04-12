@@ -58,12 +58,13 @@ export const addItem = (opts) => {
       $target.prepend(row);
     }
 
+    console.log("-----");
+    console.log($target);
+    console.log(opts);
+    console.log($(`#${opts.id}`));
     window.Shiny.renderDependenciesAsync(opts.item.deps).then(() => {
       window.Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html).then(
         () => {
-          console.log("-----");
-          console.log($target);
-          console.log(opts);
           const gridOpts = getGrid(opts.target);
           $(`${opts.target}`).masonry(gridOpts);
 
