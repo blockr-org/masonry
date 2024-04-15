@@ -35,6 +35,7 @@ export const addRow = (opts) => {
 };
 
 export const addItem = (opts) => {
+  console.info(opts);
   if (!opts.id) opts.id = identifier();
   const row = `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
 
@@ -66,6 +67,7 @@ export const addItem = (opts) => {
             $(`${opts.target}`).masonry(gridOpts);
           }
 
+          console.log(opts.id, "rendered");
           const event = new CustomEvent("masonry:added-item", {
             detail: opts.id,
           });
