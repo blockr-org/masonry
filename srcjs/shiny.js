@@ -36,8 +36,10 @@ export const addRow = (opts) => {
 
 export const addItem = (opts) => {
   console.info(opts);
-  if (!opts.id) opts.id = identifier();
-  const row = `<div id="${opts.id}" class='masonry-item ${opts.classes}'></div>`;
+  let id = opts.id;
+  if (id === undefined || id === null || id === "") id = identifier();
+
+  const row = `<div id="${id}" class='masonry-item ${opts.classes}'></div>`;
 
   let $target;
   if (!opts.row_id) {
@@ -60,14 +62,15 @@ export const addItem = (opts) => {
 
   window.Shiny.renderDependenciesAsync(opts.item.deps)
     .then(() => {
-      window.Shiny.renderContentAsync($(`#${opts.id}`), opts.item.html)
+      window.Shiny.renderContentAsync($(`#${id}`), opts.item.html)
         .then(() => {
           if (opts.mason) {
             const gridOpts = getGrid(opts.target);
             $(`${opts.target}`).masonry(gridOpts);
           }
 
-          console.log(opts.id, "rendered");
+          console.log(id, "rendered");
+          console.log(row);
           const event = new CustomEvent("masonry:added-item", {
             detail: opts.id,
           });
