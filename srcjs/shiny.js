@@ -70,7 +70,7 @@ export const addItem = (opts) => {
           }
 
           console.log(id, "rendered");
-          console.log(item);
+          console.log($(`#${id}`));
           const event = new CustomEvent("masonry:added-item", {
             detail: id,
           });

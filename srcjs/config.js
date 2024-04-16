@@ -57,7 +57,6 @@ export const getConfig = (opts) => {
     grid: rows,
   };
 
-  console.log(config);
   window.Shiny.setInputValue(`${opts.target}_config:force.raw`, config);
 };
 
