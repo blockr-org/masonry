@@ -96,8 +96,9 @@ const masonItem = (el, opts) => {
     }
   }
 
-  const id = identifier(20);
-  $(el).attr("id", id);
+  if (!$(el).attr("id")) {
+    $(el).attr("id", identifier(20));
+  }
 };
 
 const enforceFullWidth = (el) => {
