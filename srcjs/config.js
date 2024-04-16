@@ -64,10 +64,6 @@ export const asPercentage = (x, total) => {
 };
 
 export const getDimensions = (el) => {
-  let perc = $(el).css("width").replace("%", "");
-
-  if (perc) return parseInt(perc);
-
   return $(el).width() || 0;
 };
 
