@@ -36,10 +36,11 @@ export const getConfig = (opts) => {
           items.push(opt);
         });
 
-      let total = items.map((item) => item.width).reduce((c, p) => c + p, 0);
+      const total = items.map((item) => item.width).reduce((c, p) => c + p, 0);
 
       items = items.map((item) => {
-        item.percentage = asPercentage(item.width, total);
+        //item.percentage = asPercentage(item.width, total);
+        item.percentage = Math.floor(100 / items.length) * 100;
         return item;
       });
 
