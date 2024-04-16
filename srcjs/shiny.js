@@ -39,6 +39,7 @@ export const addItem = (opts) => {
   let id = opts.id;
   if (id === undefined || id === null || id === "") id = identifier();
 
+  console.log(id);
   const item = `<div id="${id}" class='masonry-item ${opts.classes}'></div>`;
 
   let $target;
