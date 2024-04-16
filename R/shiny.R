@@ -88,7 +88,8 @@ masonry_add_item <- function(
   classes = "",
   session = shiny::getDefaultReactiveDomain(),
   event_id = NULL,
-  mason = TRUE
+  mason = TRUE,
+  id = id
 ){
   if(missing(target))
     stop("Missing `target`")
@@ -114,7 +115,8 @@ masonry_add_item <- function(
       row_id = row_id,
       item = process_deps(item, session),
       event_id = event_id,
-      mason = mason
+      mason = mason,
+      id = id
     )
   )
 }

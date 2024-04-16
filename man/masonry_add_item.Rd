@@ -13,7 +13,8 @@ masonry_add_item(
   classes = "",
   session = shiny::getDefaultReactiveDomain(),
   event_id = NULL,
-  mason = TRUE
+  mason = TRUE,
+  id = id
 )
 }
 \arguments{
