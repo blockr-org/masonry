@@ -39,7 +39,7 @@ export const addItem = (opts) => {
   let id = opts.id;
   if (id === undefined || id === null || id === "") id = identifier();
 
-  const row = `<div id="${id}" class='masonry-item ${opts.classes}'></div>`;
+  const item = `<div id="${id}" class='masonry-item ${opts.classes}'></div>`;
 
   let $target;
   if (!opts.row_id) {
@@ -53,11 +53,11 @@ export const addItem = (opts) => {
   }
 
   if (opts.position == "end") {
-    $target.append(row);
+    $target.append(item);
   }
 
   if (opts.position == "start") {
-    $target.prepend(row);
+    $target.prepend(item);
   }
 
   window.Shiny.renderDependenciesAsync(opts.item.deps)
@@ -70,9 +70,9 @@ export const addItem = (opts) => {
           }
 
           console.log(id, "rendered");
-          console.log(row);
+          console.log(item);
           const event = new CustomEvent("masonry:added-item", {
-            detail: opts.id,
+            detail: id,
           });
           document.dispatchEvent(event);
           getConfig({ target: opts.target.replace("#", "") });
