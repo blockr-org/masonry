@@ -77,6 +77,7 @@ masonry_add_row <- function(
 #'  or the `end`.
 #' @param mason Whether to run masonry after adding the item.
 #' @param event_id id of event to trigger (`input$event_id`) when the item is rendered.
+#' @param id ID of masonry item.
 #' 
 #' @export
 masonry_add_item <- function(
