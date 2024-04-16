@@ -40,7 +40,7 @@ export const getConfig = (opts) => {
 
       items = items.map((item) => {
         //item.percentage = asPercentage(item.width, total);
-        item.percentage = Math.floor(100 / items.length) * 100;
+        item.percentage = Math.floor(100 / items.length);
         return item;
       });
 
@@ -57,6 +57,7 @@ export const getConfig = (opts) => {
     grid: rows,
   };
 
+  console.log(config);
   window.Shiny.setInputValue(`${opts.target}_config:force.raw`, config);
 };
 
