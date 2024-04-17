@@ -3,21 +3,11 @@ import { identifier } from "./id.js";
 import { setGrid } from "./storage.js";
 
 export const masonry = (el, opts) => {
-  if (Array.isArray(opts)) {
-    opts = null;
-  }
+  if (Array.isArray(opts)) opts = null;
 
   opts = opts || $(el).data("styles") || {};
 
   masonMains(el, opts);
-};
-
-const listen = (el, _opts) => {
-  $(el)
-    .find(".masonry-item")
-    .on("mouseup", (event) => {
-      $(event.target).trigger("resize");
-    });
 };
 
 const masonMains = (el, opts) => {
@@ -39,7 +29,6 @@ const masonMain = (el, opts) => {
   setGrid(id, opts);
 
   masonRows(el, opts);
-  listen(el, opts);
   $(el).addClass("masoned");
 
   // sortable between rows
