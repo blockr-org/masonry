@@ -88,7 +88,7 @@ export const restoreConfig = (opts) => {
           });
       });
 
-    getGrid(`#${opts.target}`);
+    getConfig(opts);
   }, opts.delay || 0);
 };
 
