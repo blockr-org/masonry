@@ -51,7 +51,7 @@ masonryRow <- \( # nolint
   classes = ""
 ){
   div(
-    class = sprintf("masonry-row position-relative d-flex %s", classes),
+    class = sprintf("masonry-row position-relative d-flex flex-row %s", classes) |> trimws(),
     ...
   )
 }
@@ -74,7 +74,7 @@ masonryItem <- \( # nolint
     width <- round(width * 100L)
 
   div(
-    class = sprintf("masonry-item flex-grow-1 %s", classes),
+    class = sprintf("masonry-item %s", classes) |> trimws(),
     `data-masonry-width` = width,
     ...
   )

@@ -3,11 +3,13 @@ import { identifier } from "./id.js";
 import { setGrid } from "./storage.js";
 
 const listen = (el, _opts) => {
-  $(el)
-    .find(".masonry-item")
-    .on("mouseup", (event) => {
-      $(event.target).trigger("resize");
-    });
+  const item = $(el).find(".masonry-item")[0];
+
+  let observer = new ResizeObserver(() => {
+    $(item).trigger("resize");
+  });
+
+  observer.observe(item);
 };
 
 export const masonry = (el, opts) => {
@@ -32,7 +34,11 @@ const masonMains = (el, opts) => {
 };
 
 const masonMain = (el, opts) => {
-  const id = $(el).attr("id");
+  let id = $(el).attr("id");
+  if (!id) {
+    id = identifier(20);
+    $(el).attr("id", id);
+  }
   opts.group = id;
   setGrid(id, opts);
 
